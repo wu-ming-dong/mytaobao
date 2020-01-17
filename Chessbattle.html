@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        ul,li{
+            list-style: none;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        #chesstable{
+            max-width: 980px;
+            min-width: 980px;
+            max-height: 580px;
+            min-height: 580px;
+            width: 80%;
+            height: 100%;
+            position: absolute;
+            left: 150px;
+            background-color:green;
+        }
+        .table{
+            width: 70%;
+            height: 96%;
+            position: absolute;
+            top: 2%;
+            left: 15%;
+            background-color: white;
+        }
+        .hang,.lie{
+            border: 1px solid white;
+        }
+        .hang{
+            width: 100%;
+            height: 11%;
+            z-index: 4;
+        }
+        .lie{
+            height: 100%;
+            width: 12.2%;
+            float: left;
+            z-index: 6;
+        }
+        #chesstable>p{
+            position: absolute;
+        }
+        .p1,.p2,.p4,.p5{
+            width: 20%;
+            height: 2px;
+            background-color: white;
+            transform-origin: 50% 50%;
+        }
+        .p3{
+            width: 69.2%;
+            height: 9.2%; 
+            left: 15.5%;
+            top: 45.2%;
+            z-index: 11;
+            background-color: black;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .p1,.p2{
+            top: 15%;
+            left: 40%; 
+            z-index: 10;
+        }
+        .p1,.p5{
+            transform: rotateZ(32deg);
+        }
+        .p2,.p4{
+            transform: rotateZ(-32deg);
+        }
+        .p4,.p5{
+            bottom: 15%;
+            left:40%; 
+            z-index: 10;
+        }
+        .chessclass{
+            width: 50px;
+            height:50px;
+            border-radius: 50%;
+            background-color: white;
+            text-align: center;
+            line-height: 50px;
+            font-size: 24px;
+            font-weight: bold;
+            border: 1px solid black;
+        }
+        .chesspoint{
+            width: 50px;
+            height:50px;
+            border-radius: 50%;
+            background-color: transparent;
+        }
+        #text{
+            width: 20px;
+            height: 20px;
+            z-index: 50;
+            position: absolute;
+            left: 980px;
+            top: 550px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div id="text"></div> -->
+    <div id="chesstable">
+          <p class="p1"></p>
+          <p class="p2"></p>
+          <p class="p3">楚河汉界</p>
+          <p class="p4"></p>
+          <p class="p5"></p>
+    </div>
+</body>
+<script src="chessman.js"></script>
+<script>
+//创建棋盘及其初始化
+    let tabledom = document.getElementById("chesstable");
+    let  chessfield = document.createElement("table");
+    chessfield.id = "chessfield";
+    chessfield.style.cssText = `
+         border:3px solid yellow;
+         background-color:black;
+         border-collapse:collapse;
+         table-layout = fixed;
+         width:70%;
+         height:90%;
+         position:absolute;
+         top:5%;
+         left:15%;
+    `;
+    tabledom.appendChild(chessfield);
+    for(let i=0;i<9;i++){
+        let tr = document.createElement("ul");
+            tr.className = "hang";
+            for(let j=0;j<8;j++){
+                let td = document.createElement("li");
+                    td.className = "lie";
+                td.Ycoordinate= i;
+                td.Xcoordinate= j;
+                tr.appendChild(td);
+            }
+           chessfield.appendChild(tr);
+    }
+    
+    //以棋盘黄边为氟元素边界进行定位操作
+    let chessdoms = document.getElementById("chessfield");
+    let chessbackgcolor = "orange";
+    let chessclor = "red";
+    let arr = [0,1,2,3,4,5,6,7,8,19,25,27,29,31,33,35,
+    54,56,58,60,62,64,70,81,82,83,84,85,86,87,88,89];
+    let chessrole =["车","马","象","士","将","士","象","马","车","炮","炮","兵","兵","兵","兵","兵",
+    "卒","卒","卒","卒","卒","炮","炮","车","马","相","士","帅","士","相","马","车"]
+    const xdom = 86;
+    const ydom = 56;
+    for(let i=0;i<10;i++){
+        for (let j = 0;j<9;j++){
+            if(i*9+j>40){
+                chessbackgcolor = "gray";
+                chessclor = "green";
+            }
+            if(arr.indexOf(i*9+j)!=-1){
+                let input = document.createElement("p");
+                input.className = "chessclass";
+                input.setAttribute("Xcoordinate",i);
+                input.setAttribute("Ycoordinate",j);
+                input.style.backgroundColor = chessbackgcolor;
+                input.style.color = chessclor;
+                input.style.position = "absolute";
+                input.style.zIndex = 30;
+                input.style.top = i*ydom-25+"px";
+                input.style.left = j*xdom-25+"px";
+                // console.log(arr.indexOf(i*9+j));
+                input.innerHTML = chessrole[arr.indexOf(i*9+j)];
+                chessdoms.appendChild(input);
+            }
+        }
+    }
+    //建立坐标点
+    for(let i=0;i<10;i++){
+        for (let j = 0;j<9;j++){
+            let input = document.createElement("p");
+                input.className = "chesspoint";
+                input.setAttribute("Xcoordinate",i);
+                input.setAttribute("Ycoordinate",j);
+                input.style.position = "absolute";
+                input.style.zIndex = 20;
+                input.style.top = i*ydom-25+"px";
+                input.style.left = j*xdom-25+"px";
+            chessdoms.appendChild(input);
+        }
+    }
+    //棋子的动态效果
+    //获取棋子节点
+    let chessdom = document.getElementsByClassName("chessclass");
+    //定义坐标变量
+    let xdoms = 0;
+    let ydoms = 0;
+    //定义坐标差变量
+    let xdiffervalue = 0;
+    let ydiffervalue = 0;
+    //给棋子注册事件
+    for(let i=0;i<chessdom.length;i++){
+        let rembernum = 0;
+        chessdom[i].onmousedown = function(event){
+            let evc = event||window.event;
+            xdiffervalue = evc.pageX-298-25;
+            ydiffervalue = evc.pageY-32-25;
+            rembernum = chessdom[i].style.zIndex;
+            chessdom[i].style.zIndex = 50 ;
+            chessdom[i].onmousemove = function(event){
+                 let evt = event||window.event;
+                //  console.log(evt.pageX-298);
+                //  console.log(evt.pageY-32);
+                    xdoms = evt.pageX-298-25;
+                    ydoms = evt.pageY-32-25;
+                    // if(xdoms<=0){xdoms=-25};
+                    // if(ydoms<=0){ydoms=-25};
+                    // if(xdoms>=980){xdoms=980-1};
+                    // if(ydoms>=550){ydoms=550-1};
+                    chessdom[i].style.top = ydoms+"px";
+                    chessdom[i].style.left = xdoms+"px";
+                    console.log(chessdom[i].style.top);
+                    console.log(chessdom[i].style.left);
+            }
+        }
+        let mdom = 0;
+        let ndom = 0;
+        chessdom[i].onmouseup = function(){
+            chessdom[i].style.zIndex = rembernum;
+            for(let j=0;j<chessdom.length;j++){
+                   if(i==j){
+                        continue;
+                   }else{
+                        console.log(chessdom[i].style.top);
+                        console.log(chessdom[i].style.left);
+                        mdom = Math.sqrt(parseFloat(chessdom[i].style.top)-parseFloat(chessdom[j].style.top));
+                        ndom = Math.sqrt(parseFloat(chessdom[i].style.left)-parseFloat(chessdom[j].style.left));
+                        if(mdom<=5&&ndom<=5){
+                                chessdom[j].style.zIndex = -50;
+                                chessdom[j].style.display = "none";
+                                chessdom[i].style.zIndex = 30;
+                                chessdom[i].style.top = chessdom[j].style.top +"px";
+                                chessdom[i].style.left = chessdom[j].style.left +"px";
+                                break;
+                        }else{
+                                if(j==chessdom.length-1){
+                                    chessdom[i].style.top = ydiffervalue +"px";
+                                    chessdom[i].style.left = xdiffervalue +"px";
+                                    console.log(xdiffervalue);
+                                }else{
+                                     continue;
+                                }
+                        }
+                   }
+            }
+            chessdom[i].onmousemove = "";
+        }
+    }
+</script>
+</html>
