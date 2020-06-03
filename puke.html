@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扑克游戏</title>
+    <link rel="stylesheet" href="playcss/puke.css">
+</head>
+<body>
+    <div id="playground">
+        <ul id="playear">
+            <li class="playlidoms">
+                <!-- 主牌 -->
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+                <!-- 副牌 -->
+                <div class="pukeclass"></div>
+                <div class="pukeclass"></div>
+            </li>
+            <li class="playlidoms">
+                <div class="playerimgbox">
+                    <img src="" alt="" class="playerimg">
+                    <div class="playermoney">豆币:<input type="text"></div>
+                    <div class="playername">玩家:<input type="text"></div>
+                </div>
+                 <div class="playerpukbox"></div>
+                 <div class="playerselectbox">
+                    <ul class="selectuldoms">
+                        <li class="selectlidoms"></li>
+                        <li class="selectlidoms"></li>
+                        <li class="selectlidoms"></li>
+                        <li class="selectlidoms"></li>
+                    </ul>
+                 </div>
+            </li>
+            <li class="playlidoms">
+                <div class="playerimgbox">
+                    <img src="" alt="" class="playerimg">
+                    <div class="playermoney">豆币:<input type="text"></div>
+                    <div class="playername">玩家:<input type="text"></div>
+                </div>
+                <div class="playerpukbox"></div>
+                <div class="playerselectbox">
+                    <ul class="selectuldoms">
+                        <li class="selectlidoms"></li>
+                        <li class="selectlidoms"></li>
+                        <li class="selectlidoms"></li>
+                        <li class="selectlidoms"></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="playlidoms">
+                <div class="playerimgbox">
+                    <img src=" " alt="" class="playerimg">
+                    <div class="playermoney">豆币:<input type="text"></div>
+                    <div class="playername">玩家:<input type="text"></div>
+                </div>
+                <div class="playerpukbox"></div>
+                <div class="playerselectbox">
+                    <ul class="selectuldoms">
+                        <li class="selectlidoms"></li>
+                        <li class="selectlidoms"></li>
+                        <li class="selectlidoms"></li>
+                        <li class="selectlidoms"></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="playlidoms"><div id="timeset">15</div></li>
+            <li class="playlidoms">扑克游戏选择</li>
+        </ul>
+    </div>
+</body>
+<script>
+    //静态布局
+    //玩家信息
+    let player1 = {
+        img:"playimgs/jiugonggeplayimgs/animall/animal2.jpg",
+        name:"红鸟",
+        money:"3000"
+    }
+    let player2 = {
+        img:"playimgs/jiugonggeplayimgs/animall/animal3.jpg",
+        name:"蓝鸟",
+        money:"3000"
+    }
+    let player3 = {
+        img:"playimgs/jiugonggeplayimgs/animall/animal1.jpg",
+        name:"我是狮子王辛巴",
+        money:"3000"
+    }
+    let plarerarr = [player1,player2,player3];
+    //玩家信息填充
+    let playerimgbox = document.getElementsByClassName("playerimgbox");
+    for(let i=0;i<plarerarr.length;i++){
+        playerimgbox[i].children[0].src = plarerarr[i].img;
+        playerimgbox[i].children[1].children[0].value = plarerarr[i].money;
+        playerimgbox[i].children[2].children[0].value = plarerarr[i].name;
+    }
+    //构建页面静态布局
+    let playlidoms = document.getElementsByClassName("playlidoms");
+    playlidoms[0].style.cssText = `
+           width:72px;
+           height:102px;
+           left:515px;
+           top:20px
+    `;
+    playlidoms[1].style.cssText = `
+           width:450px;
+           height:100px;
+           top:-5px;
+           left:5px;
+           transform-origin:0px 100px;
+           transform:rotateZ(90deg);
+    `;
+    playlidoms[1].children[0].children[0].style.cssText = `
+          transform:rotateZ(-90deg);
+    `;
+    playlidoms[1].children[0].children[1].style.cssText = `
+          top:90px;
+          left:150px;
+          transform-origin:0px 10px;
+          transform:rotateZ(-90deg);
+    `;
+    playlidoms[1].children[0].children[2].style.cssText = `
+          top:90px;
+          left:120px;
+          transform-origin:0px 10px;
+          transform:rotateZ(-90deg);
+    `;
+    playlidoms[2].style.cssText = `
+           width:450px;
+           height:100px;
+           top:-5px;
+           right:5px;
+           transform-origin:450px 100px;
+           transform:rotateZ(-90deg);
+    `;
+    playlidoms[2].children[0].children[0].style.cssText = `
+          transform:rotateZ(90deg);
+    `;
+    playlidoms[2].children[0].children[1].style.cssText = `
+          top:90px;
+          left:-10px;
+          transform-origin:140px 10px;
+          transform:rotateZ(90deg);
+    `;
+    playlidoms[2].children[0].children[2].style.cssText = `
+          top:90px;
+          left:22px;
+          transform-origin:140px 10px;
+          transform:rotateZ(90deg);
+    `;
+    playlidoms[3].style.cssText = `
+           width:450px;
+           height:100px;
+           bottom:5px;
+           left:350px;
+           right:0px;
+    `;
+    playlidoms[4].style.cssText = `
+           width:40px;
+           height:40px;
+           border-left:30px solid gray;
+           border-top:30px solid gray;
+           border-right:30px solid gray;
+           border-bottom:30px solid gray;
+           background:gray;
+           top:200px;
+           left:500px;
+    `;
+    playlidoms[5].style.cssText = `
+          left:2px;
+          top:2px;
+          width:100px;
+          height:30px;
+          line-height:30px;
+          font-weight:bold;
+          text-align:center;
+          background:gray;
+          color:yellow;
+          border:1px solid transparent;
+    `;
+    //动态控制
+    //对扑克玩法选择特效
+    let playstylearr = ["红桃四","斗地主","炸金花","十点半","开始"];
+    let playstydom = 0;
+    let playstyboxdom = document.createElement("ul");
+    let plarstyrotectrnum = 0;//控制扑克游戏种类旋转
+    let playstysoncontrol = 0;
+    playstyboxdom.className = "playstyboxclass";
+    playlidoms[4].appendChild(playstyboxdom);
+    for(let i=0;i<playstylearr.length;i++){
+        playstydom = document.createElement("li");
+        playstydom.className = "playstyclass";
+        playstydom.innerHTML = playstylearr[i];
+        playstyboxdom.appendChild(playstydom);
+    }
+    let playstyclass = document.getElementsByClassName("playstyclass");
+    let playstyboxclass = document.getElementsByClassName("playstyboxclass");
+    for(let i=0;i<playstyclass.length;i++){
+        if(i<playstyclass.length-1){
+            if(i<2){
+                playstyclass[i].style.top = 70-10+"px";
+            }else{
+                playstyclass[i].style.top = -70-10+"px";
+            }
+            if(i%2==0){
+                playstyclass[i].style.left = 70-10+"px";
+            }else{
+                playstyclass[i].style.left = -70-10+"px";
+            }
+        }else{
+            playstyclass[i].style.display = "none";
+        }
+    }
+    //根据控制数plarstyrotectrnum&&playstysoncontrol来判断是否旋转
+    let rotenum = 0;
+    setInterval(() => {
+          if(plarstyrotectrnum==1&&playstysoncontrol==0){
+              playstyboxclass[0].style.transform = "rotateZ("+rotenum+'deg'+")";
+              rotenum += 10;
+              for(let i=0;i<playstyclass.length;i++){
+                   playstyclass[i].style.transform = "rotateZ("+(-1)*rotenum+'deg'+")";
+              }
+          }
+    }, 1000);
+    let playrulernum = 0;//控制游戏规则（1，2，3，4）--由选项控制
+    let playpukenum = 0;//控制初始发牌时的牌数 --由选项控制
+    for(let i=0;i<playstyclass.length-1;i++){
+        playstyclass[i].onclick = function(){
+            for(let j=0;j<playstyclass.length-1;j++){
+                    playstyclass[j].style.display = "none";
+            }
+            if(i==0){playpukenum=48};
+            if(i==1){playpukenum=50};
+            if(i==2){playpukenum=9};
+            if(i==3){playpukenum=3};
+            selectbtnstart = 0;
+            playrulernum = i+1;
+            playstyclass[playstyclass.length-1].style.display = "block";
+        }
+        playstyclass[i].onmouseenter = function(){
+            playstysoncontrol = 1;//控制游戏玩法选项转动
+        }
+        playstyclass[i].onmouseleave = function(){
+            playstysoncontrol = 0;//控制游戏玩法选项停止
+        }
+    }
+    //游戏选择特效
+    let startnum = 0;//控制开始发牌--由（开始）控制0-不动；1-发牌
+    // let pukebox = 0;
+    // setInterval(() => {
+    // pukebox = document.getElementsByClassName("playerpukebox");//玩家卡牌放置区节点-开始时制空
+    // }, 400);
+    //（开始）按钮触发时效果
+    let pukenumarr = 0;//开始时将牌的坐标赋值给数组pukenumarr
+    let pukedomnumarr1 = [];//坐标中卡牌有王的坐标
+    let pukedomnumarr2 = [];//坐标中卡牌无王的坐标
+    playstyclass[playstyclass.length-1].onclick = function(){
+        //（开始）点击后父元素影藏
+        playstyboxclass[0].style.display = "none";
+        for(let j=0;j<playstyclass.length-1;j++){
+                    playstyclass[j].style.display = "block";
+        }
+        //各级控制数初始化
+        startnum = 1;
+        pukenumcount = 0;
+        //给pukenumarr赋以相对应的数组--控制发牌时个数及根据玩法挑选卡牌种类
+        for(let i=0;i<54;i++){
+            pukedomnumarr1[i] = i;
+            if(i<52){
+                pukedomnumarr2[i] = i;
+            }
+        }
+        if(playpukenum==50){
+            pukenumarr = pukedomnumarr1;
+        }else{
+            pukenumarr = pukedomnumarr2;
+        }
+    }
+    //游戏选项弹出启动扭的移入移出效果
+    playlidoms[5].onmouseenter = function(){
+        playlidoms[5].style.background = "black";
+        playlidoms[5].style.color = "red";
+    }
+    playlidoms[5].onmouseleave = function(){
+        playlidoms[5].style.background = "gray";
+        playlidoms[5].style.color = "yellow";
+    }
+    //游戏选项弹出启动扭的点击效果
+    playlidoms[5].onclick = function(){
+        playstyboxclass[0].style.display = "block";
+        //玩家扑克放置区制空
+        for(let i=1;i<4;i++){
+            playlidoms[i].children[1].innerHTML = "";
+            for(let j=0;j<playlidoms[i].children[2].children[0].children.length;j++){
+                playlidoms[i].children[2].children[0].children[j].innerHTML = "";
+            }
+        }
+        //扑克放置区还原
+        playlidoms[0].style.width = "72px";
+        playlidoms[0].style.height = "102px";
+        playlidoms[0].style.left = "515px";
+        playlidoms[0].style.top = "20px";
+        for(let i=0;i<pukeclass.length;i++){
+            pukeclass[i].style.display = "block";
+            pukeclass[i].style.left = "1px";
+            pukeclass[i].style.top = "1px";
+        }
+        //控制选项框旋转
+        plarstyrotectrnum = 1;
+        playstysoncontrol = 0;
+        //控制数初始化
+        pukepaixucontrol = 0;
+        washpuke = 1;
+        pukenumarr = 0;
+        pukenumcount = 0;
+    }
+    //创建牌面
+    //获取牌的节点
+    let pukeclass = document.getElementsByClassName("pukeclass");
+    setInterval(() => {
+        if(playpukenum!=51){
+            pukeclass[52].style.display = "none";
+            pukeclass[53].style.display = "none";
+        }else{
+            pukeclass[52].style.display = "block";
+            pukeclass[53].style.display = "block";
+        }
+    }, 80);
+    let pukelidom1 = 0;
+    let pukelidom2 = 0;
+    for(let i=0;i<pukeclass.length;i++){
+        pukelidom1 = document.createElement("li");
+        pukelidom2 = document.createElement("li");
+        pukelidom1.className = "positivepiece";
+        if(i==53){
+            pukelidom1.setAttribute("index",i-1);//给每个牌进行编号--用于排序
+        }else{
+            pukelidom1.setAttribute("index",i);//给每个牌进行编号--用于排序
+        }
+        // pukelidom1.setAttribute("index",i);//给每个牌进行编号--用于排序
+        pukelidom2.className = "relitivepiece";
+        pukeclass[i].appendChild(pukelidom1);
+        pukeclass[i].appendChild(pukelidom2);
+        pukeclass[i].style.transform = "rotateY(0deg)";
+    }
+    let imgdom = 0;
+    let pukearr = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
+    let jokerarr = ["J","O","K","E","R"];
+    let jokercolor = ["blue","red"];
+    let pukeimgarr = ["chunmei.jpg","xiahe.jpg","qiuju.jpg","dongxun.jpg","shui.jpg","huo.jpg","shandian.jpg"];
+    let jokerimgarr = ["yueliang.jpg","taiyang.jpg"];
+    let jokeycolornum = 0;
+    let relitivepiece = document.getElementsByClassName("relitivepiece");
+    let imgsddom = 0;
+    for(let i=0;i<relitivepiece.length;i++){
+        for(let j=0;j<3;j++){
+            pukelidom1 = document.createElement("li");
+            if(j==2){
+                //对卡牌中部区域设计
+                pukelidom1.className = "middleclass";
+                if(i<52){
+                    if(i%13<10){
+                       for(let k=0;k<i%13+1;k++){
+                           imgdom = document.createElement("img");
+                           imgdom.className = "imgclass1";
+                           imgdom.src = "playimgs/pukeimgs/"+pukeimgarr[parseInt(i/13)];
+                           pukelidom1.appendChild(imgdom);
+                       }
+                       //对1-10的图片进行布局
+                       if(i%13==0||i%13==1||i%13==2){
+                           imgsddom = pukelidom1.children;
+                           //console.log(imgsddom);
+                           for(let t=0;t<imgsddom.length;t++){
+                              imgsddom[t].style.left = "15px";
+                              imgsddom[t].style.top = (t+1)*(80/(imgsddom.length+1))-10+"px";
+                           }
+                        }
+                       if(i%13==3||i%13==4){
+                           imgsddom = pukelidom1.children;
+                           for(let t=0;t<imgsddom.length;t++){
+                               if(t<4){
+                                   imgsddom[t].style.left = 4+(t%2)*20+"px";
+                                   imgsddom[t].style.top =  15+parseInt(t/2)*30+"px";
+                               }else{
+                                   imgsddom[t].style.left = "15px";
+                                   imgsddom[t].style.top =  "30px";
+                               }
+                           }
+                       }
+                       if(i%13==5||i%13==6||i%13==7){
+                           imgsddom = pukelidom1.children;
+                           for(let t=0;t<imgsddom.length;t++){
+                               if(t<6){
+                                   imgsddom[t].style.left = 0+(t%2)*30+"px";
+                                   imgsddom[t].style.top =  6+parseInt(t/2)*26+"px";
+                               }else{
+                                   imgsddom[t].style.left = "15px";
+                                   if(imgsddom.length==7){
+                                       imgsddom[t].style.top = "32px";
+                                   }else{
+                                       imgsddom[t].style.top =  (t-5)*(80/(7-4))-8+"px";
+                                   }
+                               }
+                           }
+                       }
+                       if(i%13==8||i%13==9){
+                           imgsddom = pukelidom1.children;
+                           for(let t=0;t<imgsddom.length;t++){
+                               if(t<8){
+                                   imgsddom[t].style.left = 0+(t%2)*30+"px";
+                                   imgsddom[t].style.top =  2+parseInt(t/2)*20+"px";
+                               }else{
+                                   imgsddom[t].style.left = "15px";
+                                   if(imgsddom.length==9){
+                                       imgsddom[t].style.top = "32px";
+                                   }else{
+                                       imgsddom[t].style.top =  (t-7)*(80/(7-4))-8+"px";
+                                   }
+                               }
+                           }
+                       }
+
+                    }else{
+                        imgdom = document.createElement("img");
+                        imgdom.className = "imgclass2";
+                        imgdom.src = "playimgs/pukeimgs/"+pukeimgarr[i%13-6];
+                        pukelidom1.appendChild(imgdom);
+                    }
+                }else{
+                    imgdom = document.createElement("img");
+                    imgdom.className = "imgclass2";
+                    imgdom.src = "playimgs/pukeimgs/"+jokerimgarr[i%13];
+                    pukelidom1.appendChild(imgdom);
+                }
+            }else{
+                //对卡牌边部区域设计
+                if(j%2==0){
+                    pukelidom1.className = "textclasss1";
+                }else{
+                    pukelidom1.className = "textclasss2";
+                }
+                if(parseInt(i/13)==0){pukelidom1.style.color = "green"};
+                if(parseInt(i/13)==1){pukelidom1.style.color = "purple"};
+                if(parseInt(i/13)==2){pukelidom1.style.color = "orange"};
+                if(parseInt(i/13)==3){pukelidom1.style.color = "black"};
+                if(i<52){
+                    pukelidom1.innerHTML = pukearr[i%13];
+                }else{
+                    for(let k=0;k<jokerarr.length;k++){
+                        pukelidom1.innerHTML += jokerarr[k]+"<br>";
+                    }
+                    pukelidom1.style.color = jokercolor[i%13];
+                }
+            }
+            relitivepiece[i].appendChild(pukelidom1);
+        }
+    }
+    // console.log(pukeclass.length);
+    //卡牌的标识显示
+    // let a = 0;
+    // let b = 0;
+    // for(let i=0;i<pukeclass.length;i++){
+    //     a = pukeclass[i].children[0].getAttribute("index");
+    //     b = pukeclass[i].children[1].children[0].innerHTML;
+    //     console.log(a,a%13,b);
+    // }
+    //对玩家区域进行构建
+    //玩家选项
+    let selectuldoms  = document.getElementsByClassName("selectuldoms");
+    let uldomchildli = 0;
+    for(let i=0;i<selectuldoms.length;i++){
+        uldomchildli = selectuldoms[i].children;
+        for(let j=0;j<uldomchildli.length;j++){
+            uldomchildli[j].style.left = j*400 +"px";
+        }
+    }
+    let selectlidoms = 0;
+    let selectbtn = 0;
+    let dizhuplayarr = ["叫地主","不叫"];
+    let otherplay1arr = ["挖锅","加一点","不要"];
+    let otherplay2arr = ["开始"];
+    let ulselect1arr = 0;
+    let ulselect2arr = ["出牌","提示","不出"];
+    let ulselect3arr = ["加注","弃牌"];
+    let selectbtnstart = 1;
+    let selectbtndom = 0;//获取选项节点
+    let selecti = 0;//控制selectbtndom的循环添加动态效果
+    setInterval(() => {
+        if(selectbtnstart==0&&washpuke==4){
+            // console.log(selectbtnstart);
+            for(let i=0;i<selectuldoms.length;i++){
+                selectlidoms = selectuldoms[i].children;
+                // console.log(selectlidoms);
+                for(let j=0;j<selectlidoms.length;j++){
+                    if(j==1){
+                        console.log(j);
+                        if(playpukenum==48){ulselect1arr = otherplay1arr;}
+                        if(playpukenum==50){ulselect1arr = dizhuplayarr;}
+                        if(playpukenum==9||playpukenum==3){ulselect1arr = otherplay2arr;}
+                        for(let k=0;k<ulselect1arr.length;k++){
+                            selectbtn = document.createElement("input");
+                            selectbtn.type = "button";
+                            selectbtn.className = "selectbtnclass";
+                            selectbtn.value = ulselect1arr[k];
+                            selectlidoms[j].appendChild(selectbtn);
+                        }
+                    }
+                    if(j==2){
+                        console.log(j);
+                        for(let k=0;k<ulselect2arr.length;k++){
+                            selectbtn = document.createElement("input");
+                            selectbtn.type = "button";
+                            selectbtn.className = "selectbtnclass";
+                            selectbtn.value = ulselect2arr[k];
+                            selectlidoms[j].appendChild(selectbtn);
+                        }
+                    }
+                    if(j==3){
+                        console.log(j);
+                        for(let k=0;k<ulselect3arr.length;k++){
+                            selectbtn = document.createElement("input");
+                            selectbtn.type = "button";
+                            selectbtn.className = "selectbtnclass";
+                            selectbtn.value = ulselect3arr[k];
+                            selectlidoms[j].appendChild(selectbtn);
+                        }
+                    }
+                }
+            }
+            if(selectbtnstart==1&&washpuke==4){
+                selectbtndom = document.getElementsByClassName("selectbtnclass");
+                for(selecti=0;selecti<selectbtndom.length;selecti++){
+                  //斗地主--选项触发事件
+                  if(playpukenum==50){
+                      selectbtndom[selecti].onclick = function(){
+                         //叫地主
+                         if(selecti==0){
+
+                         }
+                         //不叫
+                         if(selecti==1){
+
+                         }
+                         //出牌
+                         if(selecti==2){
+
+                         }
+                         //提示
+                         if(selecti==3){
+
+                         }
+                         //不出
+                         if(selecti==4){
+
+                         }        
+                      }
+                  }
+                  //红桃四--选项触发事件
+                  if(playpukenum==48){
+                      selectbtndom[selecti].onclick = function(){
+                        //挖锅
+                        if(selecti==0){
+
+                        }
+                        //加一点
+                        if(selecti==1){
+
+                        }
+                        //不要
+                        if(selecti==2){
+
+                        }
+                        //出牌
+                        if(selecti==3){
+
+                        }
+                        //提示
+                        if(selecti==4){
+
+                        }
+                        //不出
+                        if(selecti==5){
+
+                        }         
+                      }
+                  }
+                  //炸金花，十点半--选项触发事件
+                  if(playpukenum==9||playpukenum==3){
+                      selectbtndom[selecti].onclick = function(){
+                        //开始
+                        if(selecti==0){
+                           console.log("开始");
+                        }
+                        //加注
+                        if(selecti==1){
+
+                        }
+                        //弃牌
+                        if(selecti==2){
+
+                        }
+                      }
+                  }     
+                }
+            }
+            selectbtnstart++;
+        }
+    }, 1000);
+
+    //发牌特效startnum==1
+    let startplayernum =1;
+    let playerpukebox = 0;
+    let pukenum = 0; 
+    let playerpukedombox = 0;
+    let playerpukedom1 = 0;
+    let playerpukedom2 = 0;
+    let pukenumcount = 0;//统计扑克牌数量
+    let pukepaixucontrol = 0;//1时牌按牌面大小排序
+    let pukefacenum = 0;
+    let pukefacecolor = 0;
+    let pukefacenum1 = 0;//获取当前牌面数字cunchukaopaixingxi
+    let pukefacenum2 = 0;//获取当前对比牌面数字
+    let xdom = 0;//根据牌面字符变更对应数字
+    let ydom = 0;//根据牌面字符颜色变更对应倍率，与xdom结合可得坐标数字
+    let xydom = []//存储当前玩家卡牌数字
+    let pukeleftchangenum = 0;//卡牌位置交换暂代当前节点
+    let pukelirelichangedom = 0;//卡牌反面节点内容用于交换
+    let pukeliposichangedom = 0;//卡牌正面节点内容用于交换
+    let washpuke = 1;//控制给牌排序的次数
+    let washpukearr = [];//存储当前玩家的卡牌序数用于排序--二维数组
+    let washpukenumx = 0;//存储当前玩家的卡牌序数用于排序
+    let washpukenumy = 0;//存储当前玩家的卡牌序数用于排序
+    let pukefacearr = []//配合washpukearr排序
+    let minpukenum = 0;
+    let pukeguocontrol = 0;//控制存放剩下的卡牌的操作
+    setInterval(() => {
+        if(startnum==1&&pukenumcount<playpukenum&&pukenumarr!=0){
+            // console.log(playpukenum);
+            if(startplayernum<=0){
+                startplayernum=3;
+            }
+            //playerpukebox为下标为startnum的扑克存放区
+            //创建一个卡牌
+            playerpukedombox = document.createElement("div");
+            playerpukedom1 = document.createElement("li");
+            playerpukedom2 = document.createElement("li");
+            playerpukedombox.className = "playerpukeclass";
+            playerpukedom1.className = "playerpokeposclasss";
+            playerpukedom2.className = "playerpokereliclass";
+            playerpukedombox.appendChild(playerpukedom1);
+            playerpukedombox.appendChild(playerpukedom2);
+            if(playpukenum==50||playpukenum==48){
+                playerpukedombox.style.left = parseInt((pukenumcount)/3)*26-20 + "px";
+            }else{
+                playerpukedombox.style.left = parseInt((pukenumcount)/3)*26+120 + "px";
+            }
+            //通过startplayernum的变化获取父元素
+            playerpukebox = playlidoms[startplayernum].children[1];
+            //将卡牌赋给playerpukebox作为子元素
+            playerpukebox.appendChild(playerpukedombox);
+            //根据数组长度随机获取下标及该下标位置处数组值
+            pukenum = parseInt(Math.random()*pukenumarr.length);
+            pukenum = pukenumarr[pukenum];
+            //将pukeclass在下标为pukenum时的内容转为此时playerpukedom的内容
+            playerpukedom1.innerHTML = pukeclass[pukenum].children[0].innerHTML;
+            //卡牌序数传递
+            playerpukedom1.setAttribute("index",pukeclass[pukenum].children[0].getAttribute("index"));
+            playerpukedom2.innerHTML = pukeclass[pukenum].children[1].innerHTML;
+            //将数据传递完成pukeclass隐藏
+            pukeclass[pukenum].style.display = "none";
+            //根据字符查找下标并删去数组该下标出值
+            pukenum = pukenumarr.indexOf(pukenum);
+            pukenumarr.splice(pukenum,1);
+            startplayernum--;
+            pukenumcount++;
+            //当扑克牌发完时开是排序
+            if(pukenumcount>=playpukenum){
+                pukepaixucontrol = 1;//1时牌按牌面大小排序
+                startplayernum = 0;//用于排序时的初始化
+                pukeguocontrol = 0;//控制剩余卡牌的展开
+            }
+        }
+        //排序先按大小再按花色再按游戏规则
+        
+        if(pukepaixucontrol==1&&washpuke<4){
+            if(startplayernum<=0){
+                startplayernum=3;
+            }
+            //通过startplayernum的变化获取当前父元素卡牌存放区的所有子元素
+            playerpukelidoms = playlidoms[startplayernum].children[1].children;
+            //排序
+            
+            for(let k=0;k<playerpukelidoms.length;k++){
+                // console.log(playerpukelidoms[k]);
+                pukeleftchangenum = playerpukelidoms[k].children[0];
+                pukefacenum = pukeleftchangenum.getAttribute("index");
+                pukefacearr.push(pukefacenum);
+            }
+            // console.log(pukefacearr);
+            //washpukearr数组按一定规则排序
+            washpukenumx = -1;
+            for(let k=0;k<pukefacearr.length;k++){
+                washpukenumy = 0;
+                //获取最小值
+                minpukenum = 60;
+                for(let j=0;j<pukefacearr.length;j++){
+                    if(pukefacearr[j]%13<minpukenum&&pukefacearr[j]<100){
+                        minpukenum = pukefacearr[j]%13;
+                    }
+                }
+                //根据最小值查找相应的卡牌序号存储
+                //console.log(minpukenum);
+                //当pukefacearr中有！100时washpukenumx++；且定义二维数组
+                for(let j=0;j<pukefacearr.length;j++){
+                    if(pukefacearr[j]!=100){
+                        washpukenumx++;
+                        washpukearr[washpukenumx] = [];
+                        break;
+                    }
+                }
+                for(let j=0;j<pukefacearr.length;j++){
+                    if(pukefacearr[j]%13==minpukenum&&pukefacearr[j]<60){
+                        washpukearr[washpukenumx][washpukenumy] = pukefacearr[j]*1;
+                        pukefacearr[j] = 100;
+                        washpukenumy++;
+                    }
+                }
+            }
+            // console.log(pukefacearr);
+            // console.log(washpukearr);
+            //根据数组washpukearr的信息对卡牌排序;
+            // pukelirelichangedom = 0;//卡牌反面节点内容用于交换
+            // pukeliposichangedom = 0;//卡牌正面节点内容用于交换
+            //遍历在当前玩家卡牌区域内全部子节点playerpukelidoms
+            //遍历washpukearr数组信息排列卡牌
+            let pukelidombox = 0;
+            let nowpukenum = 0;
+            let pukedomnum = 0;//控制卡牌依次交换
+            let pukeindex = 0;
+            for(let i=0;i<washpukearr.length;i++){
+            //遍历washpukearr子数组信息排列
+                for(let j=0;j<washpukearr[i].length;j++){
+                    pukelidombox = playerpukelidoms[pukedomnum];//根据pukedomnum的变化排序
+                    nowpukenum = washpukearr[i][j]*1;//依次获取数组元素
+                    // console.log(nowpukenum+"+"+nowpukenum%13);
+                    for(let k=0;k<playerpukelidoms.length;k++){
+                        pukeleftchangenum = playerpukelidoms[k].children[0];
+                        pukefacenum = pukeleftchangenum.getAttribute("index");
+                        if(nowpukenum==pukefacenum){
+                            //将第一个没排好的卡牌内容赋值给变量
+                            pukeliposichangedom = pukelidombox.children[0].innerHTML;
+                            pukelirelichangedom = pukelidombox.children[1].innerHTML;
+                            pukeindex = pukelidombox.children[0].getAttribute("index");
+                            //将符合条件的卡牌内容赋值给第一个没排好的卡牌
+                            pukelidombox.children[0].innerHTML = playerpukelidoms[k].children[0].innerHTML;
+                            pukelidombox.children[1].innerHTML = playerpukelidoms[k].children[1].innerHTML;
+                            pukelidombox.children[0].setAttribute("index",nowpukenum);
+                            //把变量交给符合条件的卡牌
+                            playerpukelidoms[k].children[0].innerHTML = pukeliposichangedom;
+                            playerpukelidoms[k].children[1].innerHTML = pukelirelichangedom;
+                            playerpukelidoms[k].children[0].setAttribute("index",pukeindex);
+                            // console.log(pukedomnum+"+"+nowpukenum+"+"+nowpukenum%13 + "+"+pukelidombox.children[1].children[0].innerHTML);
+                            // console.log(pukelidombox.children[0].getAttribute("index"));
+                            pukedomnum++;//每排好一张递增1
+                            break;
+                        }
+                    }
+                }
+            }
+            startplayernum--;
+            washpuke++ ;
+        }
+        washpukearr = [];//将当前玩家卡牌数组序数制空以备下一玩家使用
+        pukefacearr = [];//将当前玩家卡牌数组序数制空以备下一玩家使用
+        // console.log(washpuke);
+        if(washpuke==4&&playpukenum>=48){
+            playlidoms[0].style.width = "288px";
+            playlidoms[0].style.height = "102px";
+            playlidoms[0].style.left = "404px";
+            playlidoms[0].style.top = "20px";
+            for(let i=0;i<pukeclass.length;i++){
+                if(pukenumarr.indexOf(i)!=-1&&pukeguocontrol<=3){
+                    console.log(pukenumarr);
+                    pukeclass[i].style.left = 1 + pukeguocontrol*72 +"px";
+                    pukeclass[i].style.top = "1px";
+                    pukeguocontrol++;
+                }
+            }
+        }else{
+            playlidoms[0].style.width = "72px";
+            playlidoms[0].style.height = "102px";
+            playlidoms[0].style.left = "515px";
+            playlidoms[0].style.top = "20px";
+            for(let i=0;i<pukeclass.length;i++){
+                pukeclass[i].style.left = "1px";
+                pukeclass[i].style.top = "1px";
+            }
+
+        }
+    }, 100);
+    //输赢判断
+     
+    //转向
+</script>
+</html>

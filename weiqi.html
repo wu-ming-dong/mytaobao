@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五子棋</title>
+    <link rel="stylesheet" href="playcss/weiqi.css">
+</head>
+<body>
+    <div id="playall">
+        <div id="newsshowbox"></div>
+        <div id="qipanwaiwei">
+             <div id="caixian">
+                 <input type="button" value="猜先">
+             </div>
+             <div id="yesorno">
+                 <li class="yesornolicla">是否退出本次游戏？</li>
+                 <li class="yesornolicla">确认退出</li>
+                 <li class="yesornolicla">再玩一下</li>
+             </div>
+            <div id="qipanneiwei">
+
+            </div>
+        </div>
+        <div id="leftbox">
+            <div id="playershow">
+                <div id="redplayer">
+                   <div class="playercolor"><p></p>黑子</div>
+                   <div class="playername">执黑者:<input type="text"></div>
+                   <div class="playerid">ID:<input type="text"></div>
+                   <div class="playernew">黑方战绩:<input type="text"></div>
+                </div>
+                <div id="blaplayer">
+                    <div class="playercolor"><p></p>白子</div>
+                    <div class="playername">执白者:<input type="text"></div>
+                    <div class="playerid">ID:<input type="text"></div>
+                    <div class="playernew">白方战绩:<input type="text"></div>
+                </div>
+                <div id="playset">
+                    <div id="playsethead">游戏设置</div>
+                    <div id="timeall">总时长:<input type="text">小时</div>
+                    <div id="setlong">步长:<input type="text">分钟</div>
+                    <div id="playsetbtn">
+                        <input type="button" value="开始">
+                        <input type="button" value="悔棋">
+                        <input type="button" value="暂停Y/N">
+                        <input type="button" value="结束">
+                    </div>
+                </div>
+                <input type="button" value="退出游戏" id="playgoback">
+            </div>
+             <!-- <input type="button" value="猜先" id="leftboxbtn1"> -->
+        </div>
+        <div id="rightbox">
+            <div id="jishiqi">
+                <h3>倒计时</h3>
+                <div id="jishiqishow"></div>
+            </div>
+            <div id="playernow">
+                <div id="blackplayernow">
+                    <div class="playernowshow"></div>
+                    <div class="playernowshow"></div>
+                </div>
+                 <div id="middleplayernow">VS</div>
+                 <div id="whiteplayernow">
+                    <div class="playernowshow"></div>
+                    <div class="playernowshow"></div>
+                </div>
+            </div>
+            <div id="setjishiqi">
+                <h3>步长</h3>
+                <div id="setjishiqishow"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    //信息设置
+    let blackplayer = {
+        "name":"小麻雀",
+        "idname":"1567893",
+        "win": "5",
+        "lost":"2",
+        "img":"playimgs/jiugonggeplayimgs/animall/animal3.jpg"
+    }
+    let whiteplayer = {
+        "name":"老虎",
+        "idname":"1345393",
+        "win": "5",
+        "lost":"2",
+        "img":"playimgs/jiugonggeplayimgs/animall/animal0.jpg"
+    }
+    let playerarr = [blackplayer,whiteplayer];
+    let chessarr = [];
+    //玩家信息区布局及游戏设置
+    let playernowshow = document.getElementsByClassName("playernowshow");
+    for(let i=0;i<4;i++){
+        if(i%2==0){
+            playernowshow[i].style.height = "130px";
+            playernowshow[i].innerHTML = `
+              <img src="${playerarr[parseInt(i/2)].img}" alt="">
+            `;
+        }else{
+            playernowshow[i].innerHTML = playerarr[parseInt(i/2)].name;
+        }
+    }
+    //退出游戏选择框的设置及部分动态效果
+    let yesorno = document.getElementById("yesorno");
+    let yesornolicla = document.getElementsByClassName("yesornolicla");
+    for(let i=0;i<yesornolicla.length;i++){
+        if(i==0){
+            yesornolicla[i].style.width = "200px";
+            yesornolicla[i].style.top = "50px";
+            yesornolicla[i].style.background = "transparent";
+        }else{
+            yesornolicla[i].style.width = "80px";
+            yesornolicla[i].style.top = "120px";
+            yesornolicla[i].style.background = "green";
+            yesornolicla[i].style.borderRadius = "10px";
+            if(i%2==1){
+                yesornolicla[i].style.left = "10px";
+            }else{
+                yesornolicla[i].style.right = "10px";
+            }
+        }
+    }
+    for(let i=1;i<3;i++){
+        yesornolicla[i].onmouseenter = function(){
+            yesornolicla[i].style.background = "black";
+            yesornolicla[i].style.color = "red";
+        }
+        yesornolicla[i].onmouseleave = function(){
+            yesornolicla[i].style.background = "green";
+            yesornolicla[i].style.color = "black";
+        }
+    }
+    yesornolicla[1].onclick = function(){
+        yesorno.style.display = "none";
+        location.href = "index.html";
+    };
+    yesornolicla[2].onclick = function(){
+        yesorno.style.display = "none";
+    };
+    //信息填充
+    let playerdoms = document.getElementById("playershow").children;
+    let playershowdoms = 0;
+    for(let i=0;i<2;i++){
+        playershowdoms = playerdoms[i].children;
+        // console.log(playershowdoms);
+        playershowdoms[1].children[0].value = playerarr[i].name;
+        playershowdoms[2].children[0].value = playerarr[i].idname;
+        playershowdoms[3].children[0].value = "胜"+playerarr[i].win+"负"+playerarr[i].lost;
+        playershowdoms[1].children[0].disabled = "disabled";
+        playershowdoms[2].children[0].disabled = "disabled";
+        playershowdoms[3].children[0].disabled = "disabled";
+    }
+    let timeall = document.getElementById("timeall").children[0];
+    let setlong = document.getElementById("setlong").children[0];
+    let setactdoms = document.getElementById("playsetbtn").children;
+    let jishiqishow = document.getElementById("jishiqishow");
+    let setjishiqishow = document.getElementById("setjishiqishow");
+    jishiqishow.innerHTML = "02:00:00";
+    setjishiqishow.innerHTML = "05:00";
+    let h,m,s;
+    timeall.oninput = function(){
+        h = parseInt(timeall.value);
+        m = parseInt((parseFloat(timeall.value)-parseInt(timeall.value))*60);
+        if(h<10){
+            h = "0"+h;
+        }
+        if(m<10){
+            m = "0"+m;
+        }
+        if(timeall.value!=""){
+            jishiqishow.innerHTML = h+":"+m+":"+"00";
+        }else{
+            jishiqishow.innerHTML = "02:00:00";
+        }
+    }
+    let setlogtime = "05:00";
+    setlong.oninput = function(){
+        h = parseInt(setlong.value);
+        m = parseInt((parseFloat(setlong.value)-parseInt(setlong.value))*60);
+        if(h>60){
+            alert("步长不超过60min")
+            h=60;
+            setlong.value = "60";
+        }
+        if(h<10){
+            h = "0"+h;
+        }
+        if(m<10){
+            m = "0"+m;
+        }
+        if(setlong.value!=""){
+            setjishiqishow.innerHTML = h+":"+m;
+        }else{
+            setjishiqishow.innerHTML = "05:00";
+        }
+        setlogtime = setjishiqishow.innerHTML;
+    }
+    //棋盘布局及部分动态效果
+    let qipanneiweibox = document.getElementById("qipanneiwei");
+    for(let i=0;i<19;i++){
+        let ydoms = document.createElement("ul");
+        ydoms.className = "ydoms";
+        ydoms.style.top = i*28.3 + "px";
+        for(let j=0;j<19;j++){
+            let xdoms = document.createElement("li");
+            xdoms.className = "xdoms";
+            xdoms.style.left = j*28.3 + "px";
+            ydoms.appendChild(xdoms);
+        }
+        qipanneiweibox.appendChild(ydoms);
+    }
+    let uldoms = document.getElementsByClassName("ydoms");
+    let xydoms = document.getElementsByClassName("xdoms");
+    let chessdom = 0;
+    let colorarr = ["black","white"];
+    let colorcontrolnum = 0;
+    let chessputcontrolnum = 0;
+    for(let i=0;i<uldoms.length;i++){
+        if(i==uldoms.length-1){
+            for(let j=0;j<20;j++){
+                chessdom = document.createElement("div");
+                chessdom.className = "chessdom";
+                chessdom.index = 0;
+                chessdom.shadowchange = 0;
+                chessdom.style.left = -9+j*28.2 + "px";
+                chessdom.style.bottom = "-9px";
+                chessdom.style.background = "transparent";
+                uldoms[i].appendChild(chessdom);
+            }
+        }
+        for(let j=0;j<20;j++){
+                chessdom = document.createElement("div");
+                chessdom.className = "chessdom";
+                chessdom.index = 0;
+                chessdom.shadowchange = 0;
+                chessdom.style.left = -9+j*28.2 + "px";
+                chessdom.style.top = "-9px";
+                chessdom.style.background = "transparent";
+                uldoms[i].appendChild(chessdom);
+            }
+    }
+    let playercolor = document.getElementsByClassName("playercolor");
+    for(let i=0;i<playercolor.length;i++){
+        playercolor[i].children[0].style.background = colorarr[i];
+        playercolor[i].style.background = colorarr[Math.abs(i-1)];
+        playercolor[i].style.color = colorarr[i];
+        playercolor[i].children[0].style.marginLeft = "5px";
+    }
+    let chessddoms = document.getElementsByClassName("chessdom");
+    for(let i=0;i<chessddoms.length;i++){
+        chessddoms[i].onclick = function(){
+            if(chessputcontrolnum==1){
+                if(chessarr.indexOf(i)==-1){
+                    chessarr.push(i);
+                }
+                if(chessddoms[i].index==0){
+                    colorcontrolnum %= 2;
+                    this.style.background = colorarr[colorcontrolnum];
+                    this.index = 1;
+                    colorcontrolnum++;
+                }
+                for(let j=0;j<chessddoms.length;j++){
+                    if(i==j){
+                        chessddoms[j].shadowchange = 1;
+                    }else{
+                        chessddoms[j].shadowchange = 0;
+                    }
+                }
+                setjishiqishow.innerHTML = setlogtime;
+            }
+        }
+    }
+    //当前点击的落子标记效果
+    setInterval(() => {
+        for(let j=0;j<chessddoms.length;j++){
+            if(chessddoms[j].shadowchange==1){
+                chessddoms[j].style.boxShadow = "0px 0px 20px red";
+            }else{
+                chessddoms[j].style.boxShadow = "";
+            }
+        }
+    },100);
+    //猜先
+    let setactnum = 0;
+    let caixian = document.getElementById("caixian");
+    let caixiannum = 0;
+    let suijinum = 0;
+    let caixiancolorarr = ["black","white"];
+    let caixiantime = 0;
+    caixian.children[0].onclick = function(){
+        caixiantime = 0;
+        caixiannum = 0;
+        caixian.children[0].style.display  = "none";
+        suijinum = parseInt(Math.random()*10+6);
+        caixiantime=setInterval(() => {
+            if(caixiannum>=suijinum+1){
+                setactnum = 1;
+                caixian.style.display = "none";
+                clearInterval(caixiantime);
+                timespace = 100;
+                caixiantime = 0;
+            }
+            if(caixiannum<=suijinum){
+                caixian.style.background = caixiancolorarr[parseInt(caixiannum%2)];
+            }else{
+                if(caixian.style.background == "black"){
+                    alert("执黑棋者"+playerarr[0].name+"先！");
+                    colorcontrolnum = "0";
+                }else{
+                    alert("执白棋者"+playerarr[1].name+"先！");
+                    colorcontrolnum = "1";
+                }
+                chessputcontrolnum = 1;
+            }
+            caixiannum++
+        }, 100);
+    }
+    //开始
+    // let setactnum = 0;
+    let playalltime = 0;
+    let playsetime = 0;
+    let timespace = 100;
+    let setstr1 = "";
+    let setstr2 = "";
+    let seth = 0;
+    let setm = 0;
+    let setmm = 0;
+    let sets = 0;
+    let setss = 0;
+    let settimecontrol = 0;
+    let timebtn = 0;
+    setactdoms[0].onclick = function(){
+        //对游戏期间时间设置进行固定
+        timeall.disabled = "disabled";
+        setlong.disabled = "disabled";
+        //步长暂停控制数初始化
+        timebtn = 0;
+        //本局对弈数组初始化chessarr
+        chessarr = [];
+        //步长初始化
+        setjishiqishow.innerHTML = setlogtime;
+        // console.log(setlogtime);
+        //猜先初始化
+        setactnum = 0;
+        for(let i=0;i<chessddoms.length;i++){
+            chessddoms[i].style.background = "transparent";
+            chessddoms[i].index = "0";
+            chessddoms[i].shadowchange = 0;
+        }
+            caixian.style.display = "block";
+            caixian.children[0].style.display = "block";
+            caixian.style.background = "green";
+            //获取时间并对数据进行处理
+            setstr1 = jishiqishow.innerHTML;
+            if(setstr1[0]==0){
+                seth = setstr1[1];
+            }else{
+                seth = setstr1[0]+setstr1[1];
+            }
+            if(setstr1[3]==0){
+                setm = setstr1[4];
+            }else{
+                setm = setstr1[3]+setstr1[4];
+            }
+            if(setstr1[6]==0){
+                sets = setstr1[7];
+            }else{
+                sets = setstr1[6]+setstr1[7];
+            }
+    }
+    playalltime = setInterval(() => {
+        if(setactnum==1){
+            if(timespace==100){
+                alert("游戏开始！")
+                timespace = 1000;
+            }else{
+                if(timebtn%2==0){
+                    //总时长jishiqishow倒计时
+                    // console.log(jishiqishow);
+                    //  console.log(seth,setm,sets);
+                    if(sets!=0){
+                        sets--;
+                    }else{
+                        if(setm!=0){
+                            setm--;
+                            sets=60;
+                        }else{
+                            if(seth!=0){
+                                seth--;
+                                setm = 60;
+                            }else{
+                                alert("时间到！游戏结束！");
+                                clearInterval(playalltime);
+                                playalltime=0;
+                                chessputcontrolnum = 0;//控制棋盘棋子的点击效果在猜先触发后的触发
+                                //对游戏结束时间设置进行设定
+                                timeall.disabled = "false";
+                                setlong.disabled = "false";
+                            }
+                        }
+                    }
+                    if(seth<10){
+                        setstr1 = "0"+seth;
+                    }else{
+                        setstr1 = seth;
+                    }
+                    if(setm<10){
+                        setstr1 += ":0"+setm;
+                    }else{
+                        setstr1 += ":"+setm;
+                    }
+                    if(sets<10){
+                        setstr1 += ":0"+sets;
+                    }else{
+                        setstr1 += ":"+sets;
+                    }
+                    jishiqishow.innerHTML = setstr1;
+                    //步长setjishiqishow倒计时
+                    // console.log(setjishiqishow);
+                    // console.log(setmm,setss);
+                    setstr2 = setjishiqishow.innerHTML;
+                    if(setstr2[0]==0){
+                        setmm = setstr2[1];
+                    }else{
+                        setmm = setstr2[0]+setstr2[1];
+                    }
+                    if(setstr2[3]==0){
+                        setss = setstr2[4];
+                    }else{
+                        setss = setstr2[3]+setstr2[4];
+                    }
+                    if(setss!=0){
+                        setss--;
+                    }else{
+                        if(setmm!=0){
+                            setmm--;
+                            setss=60;
+                        }else{
+                            if(colorarr[colorcontrolnum]=="black"){
+                                alert("执黑子者"+playerarr[0].name+"超时！")
+                            }else{
+                                alert("执白子者"+playerarr[1].name+"超时！")
+                            }
+                            clearInterval(playalltime);
+                            playalltime=0;
+                            chessputcontrolnum = 0;//控制棋盘棋子的点击效果在猜先触发后的触发
+                        }
+                    }
+                    if(setmm<10){
+                        setstr2 = "0"+setmm;
+                    }else{
+                        setstr2 = setmm;
+                    }
+                    if(setss<10){
+                        setstr2 += ":0"+setss;
+                    }else{
+                        setstr2 += ":"+setss;
+                    }
+                    setjishiqishow.innerHTML = setstr2;
+                }
+            }
+        }
+    }, timespace);
+    //悔棋
+    setactdoms[1].onclick = function(){
+        // console.log(chessarr);
+        // console.log(chessarr[chessarr.length-1]);
+        //步长初始化
+        if(chessputcontrolnum==1){
+            setjishiqishow.innerHTML = setlogtime;
+            if(chessarr.length>0){
+                chessddoms[chessarr[chessarr.length-1]].style.background = "transparent";
+                chessddoms[chessarr[chessarr.length-1]].index = "0";
+            }
+            if(chessarr.length==1){
+                    chessddoms[chessarr[0]].shadowchange = 0;
+            }else{
+                if(chessarr.length==1){
+                    chessddoms[chessarr[0]].shadowchange = 1;
+                }else{
+                    chessddoms[chessarr[chessarr.length-1]].shadowchange = 0;
+                    chessddoms[chessarr[chessarr.length-2]].shadowchange = 1;
+                    for(let j=0;j<chessarr.length-2;j++){
+                        chessddoms[chessarr[j]].shadowchange = 0;
+                    }
+                }
+            }
+            if(chessarr.length>0){
+                colorcontrolnum--;
+            }
+            chessarr.splice(chessarr.length-1,1);
+        }
+    }
+    //暂停效果 timebtn
+    setactdoms[2].onclick = function(){
+        if(chessputcontrolnum ==1){
+            timebtn ++;
+        }
+    }
+    //结束效果 timebtn
+    setactdoms[3].onclick = function(){
+        if(colorarr[colorcontrolnum%2]=="black"){
+            alert("执白子者"+playerarr[1].name+"赢！")
+        }else{
+            alert("执黑子者"+playerarr[0].name+"赢！")
+        }
+        //对游戏结束时间设置进行设定
+        timeall.disabled = "false";
+        setlong.disabled = "false";
+        chessputcontrolnum = 0;//控制棋盘棋子的点击效果在猜先触发后的触发
+    }
+    //退出围棋游戏
+    let playgoback = document.getElementById("playgoback");
+    playgoback.onclick = function(){
+        yesorno.style.display = "block";
+    }
+    //游戏输赢的判断
+    let blackchessarr = [];
+    let whitechessarr = [];
+    let chessx = 0;//棋子的X坐标
+    let xarr = [];
+    let chessy = 0;//棋子的Y坐标
+    let yarr = [];
+    let countnum = 0;//统计符合条件棋子个数
+    let wintimeset = 0;
+    let changearrnum = 0;
+    wintimeset = setInterval(() => {
+        if(setactnum==1){
+            if(chessputcontrolnum==1){
+                //将黑棋与白棋的序号分别放入blackchessarr和whitechessarr数组中
+                for(let i=0;i<chessddoms.length;i++){
+                    if(chessddoms[i].style.background=="black"){
+                        if(blackchessarr.indexOf(i)==-1){
+                            blackchessarr.push(i);
+                        }
+                    }
+                    if(chessddoms[i].style.background=="white"){
+                        if(whitechessarr.indexOf(i)==-1){
+                            whitechessarr.push(i);
+                        }
+                    }
+                }
+            }
+            //对数组blackchessarr与whitechessarr从小到大排序
+            for(let i=0;i<blackchessarr.length;i++){
+                for(let j=i+1;j<blackchessarr.length;j++){
+                    if(blackchessarr[i]>blackchessarr[j]){
+                        changearrnum = blackchessarr[i];
+                        blackchessarr[i]=blackchessarr[j];
+                        blackchessarr[j]=changearrnum;
+                    }
+                }
+            }
+            for(let i=0;i<whitechessarr.length;i++){
+                for(let j=i+1;j<whitechessarr.length;j++){
+                    if(whitechessarr[i]>whitechessarr[j]){
+                        changearrnum = whitechessarr[i];
+                        whitechessarr[i]=whitechessarr[j];
+                        whitechessarr[j]=changearrnum;
+                    }
+                }
+            }
+            //对黑棋进行判断
+            if(blackchessarr.length>=5||whitechessarr.length>=5){
+                //将黑棋数组序号转为坐标
+                for(let i=0;i<blackchessarr.length;i++){
+                    chessx = parseInt(blackchessarr[i]%20);
+                    xarr.push(chessx);
+                    chessy = parseInt(blackchessarr[i]/20);
+                    yarr.push(chessy);
+                }
+                // console.log(xarr);
+                // console.log(yarr);
+                for(let i=0;i<xarr.length;i++){
+                    countnum = 0;
+                    //赢棋判定情况一:y坐标相等时，x坐标连续的5个等差为1得数
+                    for(let j=i;j<i+5;j++){
+                        if((yarr[j]==yarr[i])&&(xarr[j]-xarr[i])==countnum){
+                            countnum++;
+                            // console.log(countnum);
+                            if(countnum==5){
+                                chessddoms[yarr[j]*20+xarr[j]].style.background="black";
+                                alert("执黑者"+playerarr[0].name+"赢了！");
+                                countnum = 0;
+                                wintimeset = 0;
+                                setactnum = 0;
+                                chessputcontrolnum = 0;//控制棋子点击效果
+                                blackchessarr = [];//清空坐标数组
+                                whitechessarr = [];//清空坐标数组
+                                break;
+                            }
+                        }
+                    }
+                }
+                for(let i=0;i<xarr.length;i++){
+                    countnum = 0;
+                    //赢棋判定情况二:x坐标相等时，y坐标连续的5个等差为1得数
+                    for(let j=i;j<xarr.length;j++){
+                        if(xarr[i]==xarr[j]&&(yarr[j]-yarr[i]==countnum)){
+                            countnum++;
+                            // console.log(countnum);
+                            if(countnum==5){
+                                chessddoms[yarr[j]*20+xarr[j]].style.background="black";
+                                alert("执黑者"+playerarr[0].name+"赢了！");
+                                countnum = 0;
+                                wintimeset = 0;
+                                setactnum = 0;
+                                chessputcontrolnum = 0;//控制棋子点击效果
+                                blackchessarr = [];
+                                whitechessarr = [];
+                                break;
+                            }
+                        }
+                    }
+                }
+                for(let i=0;i<xarr.length;i++){
+                    countnum = 0;
+                    //赢棋判定情况三:x坐标连续的5个等差为1得数，y坐标连续的5个等差为1得数
+                    for(let j=i;j<xarr.length;j++){
+                        if((xarr[j]-xarr[i])==countnum&&(yarr[j]-yarr[i]==countnum)){
+                            countnum++;
+                            // console.log(countnum);
+                            if(countnum==5){
+                                chessddoms[yarr[j]*20+xarr[j]].style.background="black";
+                                alert("执黑者"+playerarr[0].name+"赢了！");
+                                countnum = 0;
+                                wintimeset = 0;
+                                setactnum = 0;
+                                chessputcontrolnum = 0;//控制棋子点击效果
+                                blackchessarr = [];
+                                whitechessarr = [];
+                                break;
+                            }
+                        }
+                        if((xarr[j]-xarr[i])==-1*countnum&&(yarr[j]-yarr[i]==countnum)){
+                            countnum++;
+                            // console.log(countnum);
+                            if(countnum==5){
+                                chessddoms[yarr[j]*20+xarr[j]].style.background="black";
+                                alert("执黑者"+playerarr[0].name+"赢了！");
+                                countnum = 0;
+                                wintimeset = 0;
+                                setactnum = 0;
+                                chessputcontrolnum = 0;//控制棋子点击效果
+                                blackchessarr = [];
+                                whitechessarr = [];
+                                break;
+                            }
+                        }
+                    }
+                }
+                //在黑棋判别完成后将坐标数组放空
+                xarr = [];
+                yarr = [];
+                countnum = 0;
+            }
+            //对白棋进行判断
+            if(blackchessarr.length>=5||whitechessarr.length>=5){
+                for(let i=0;i<whitechessarr.length;i++){
+                    chessx = parseInt(whitechessarr[i]%20);
+                    xarr.push(chessx);
+                    chessy = parseInt(whitechessarr[i]/20);
+                    yarr.push(chessy);
+                }
+                for(let i=0;i<xarr.length;i++){
+                    countnum = 0;
+                    //赢棋判定情况一:y坐标相等时，x坐标连续的5个等差为1得数
+                    for(let j=i;j<i+5;j++){
+                        if((yarr[j]==yarr[i])&&(xarr[j]-xarr[i])==countnum){
+                            countnum++;
+                            // console.log(countnum);
+                            if(countnum==5){
+                                chessddoms[yarr[j]*20+xarr[j]].style.background="white";
+                                alert("执白者"+playerarr[1].name+"赢了！");
+                                countnum = 0;
+                                wintimeset = 0;
+                                setactnum = 0;
+                                chessputcontrolnum = 0;//控制棋子点击效果
+                                blackchessarr = [];//清空坐标数组
+                                whitechessarr = [];//清空坐标数组
+                                break;
+                            }
+                        }
+                    }
+                }
+                for(let i=0;i<xarr.length;i++){
+                    countnum = 0;
+                    //赢棋判定情况二:x坐标相等时，y坐标连续的5个等差为1得数
+                    for(let j=i;j<xarr.length;j++){
+                        if(xarr[i]==xarr[j]&&(yarr[j]-yarr[i]==countnum)){
+                            countnum++;
+                            // console.log(countnum);
+                            if(countnum==5){
+                                chessddoms[yarr[j]*20+xarr[j]].style.background="white";
+                                alert("执白者"+playerarr[1].name+"赢了！");
+                                countnum = 0;
+                                wintimeset = 0;
+                                setactnum = 0;
+                                chessputcontrolnum = 0;//控制棋子点击效果
+                                blackchessarr = [];
+                                whitechessarr = [];
+                                break;
+                            }
+                        }
+                    }
+                }
+                for(let i=0;i<xarr.length;i++){
+                    countnum = 0;
+                    //赢棋判定情况三:x坐标连续的5个等差为1得数，y坐标连续的5个等差为1得数
+                    for(let j=i;j<xarr.length;j++){
+                        if((xarr[j]-xarr[i])==countnum&&(yarr[j]-yarr[i]==countnum)){
+                            countnum++;
+                            // console.log(countnum);
+                            if(countnum==5){
+                                chessddoms[yarr[j]*20+xarr[j]].style.background="white";
+                                alert("执白者"+playerarr[1].name+"赢了！");
+                                countnum = 0;
+                                wintimeset = 0;
+                                setactnum = 0;
+                                chessputcontrolnum = 0;//控制棋子点击效果
+                                blackchessarr = [];
+                                whitechessarr = [];
+                                break;
+                            }
+                        }
+                        if((xarr[j]-xarr[i])==-1*countnum&&(yarr[j]-yarr[i]==countnum)){
+                            countnum++;
+                            // console.log(countnum);
+                            if(countnum==5){
+                                chessddoms[yarr[j]*20+xarr[j]].style.background="white";
+                                alert("执白者"+playerarr[1].name+"赢了！");
+                                countnum = 0;
+                                wintimeset = 0;
+                                setactnum = 0;
+                                chessputcontrolnum = 0;//控制棋子点击效果
+                                blackchessarr = [];
+                                whitechessarr = [];
+                                break;
+                            }
+                        }
+                    }
+                }
+                //在黑棋判别完成后将坐标数组放空
+                xarr = [];
+                yarr = [];
+                countnum = 0;
+            }
+        }
+    }, 10);
+</script>
+</html>

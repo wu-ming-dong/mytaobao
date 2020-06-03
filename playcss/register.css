@@ -1,0 +1,180 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+ul,li{
+    list-style: none;
+}
+body{
+    background: green;
+}
+#registerplayground{
+    position: absolute;
+    top: 0px;
+    right: 20px;
+    bottom: 0px;
+    left: 20px;
+    background: white;
+    transition: all 2s linear;
+    overflow: hidden;
+}
+#registerbutn{
+    position: absolute;
+    bottom:80px;
+    width: 40px;
+    height: 80px;
+}
+#regstartbtn{
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    top:-40px;
+    transform-origin: 0px 40px;
+    transform: rotateZ(90deg);
+}
+#regstartbtn:hover{
+    background: green;
+    color: red;
+}
+#registershow{
+    position: absolute;
+    top:250px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: white;
+    transition: all 3s linear;
+}
+#registheadline{
+    height: 250px;
+    position: relative;
+    /* overflow: hidden; */
+}
+#starbox{
+    margin: auto;
+    width: 5px;
+    height: 5px;
+    background: black;
+    position: relative;
+}
+#sunbox{
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    background: red;
+    border-radius: 50%;
+    box-shadow:2px 2px 10px 20px rgba(128, 0, 128, 0.192);
+    transition: all 3s linear;
+}
+#moonbox{
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    box-shadow:2px 2px 10px 20px rgba(255, 255, 0, 0.103);
+    transition: all 1s linear;
+}
+.stardom{
+    position:absolute;
+    width:8px;
+    height:8px;
+    transition:all 3s linear;
+    border-radius:50%;
+    box-shadow:0px 0px 1px 1px white;
+}
+#registplantgrowbox{
+    position: absolute;
+    bottom:100px;
+    left:40px;
+    width: 10px;
+    height: 40px;
+    background: green;
+}
+#registbarbox{
+    position: absolute;
+    left: 500px;
+    bottom: 50px;
+    background: transparent;
+    width: 300px;
+    height: 250px;
+    display: none;
+    transition: all 1s linear;
+}
+#registinputbox{
+    position: absolute;
+    background: gray;
+    border-radius: 15px;
+    width: 300px;
+    height: 250px;
+    overflow: hidden;
+}
+#registinputbox>li{
+    position: absolute;
+    width: 1130px;
+    height: 40px;
+    line-height: 40px;
+    margin:auto;
+    overflow: hidden;
+}
+.treeleavdom{
+    position:absolute;
+    left:28px;
+    width: 70px;
+    height: 30px;
+    border-radius:50%;
+    background:orange;
+    text-align: center;
+    line-height: 30px;
+    transition: all 1s linear;
+    transform-origin: 0px 15px;
+}
+.libtn{
+    width: 130px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    outline: none;
+    border-color: transparent;
+    border-radius: 5px;
+}
+.libtndom{
+    width: 80px;
+    height: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    outline: none;
+    border-color: transparent;
+    border-radius: 50%;
+    margin-left: 34px;
+    background: yellow;
+    color: black;
+}
+.libtndom:hover{
+    background: green;
+    color: red;
+}
+.li1dom,.li2dom,.li3dom{
+    width: 280px;
+    height: 40px;
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 40px;
+}
+.li1dom>input,.li2dom>input,.li3dom>input{
+    height: 20px;
+    width: 150px;
+}
+.chectbtn{
+    position: absolute;
+    width: 30px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 15px;
+    left: 220px;
+    bottom: 5px;
+    font-size: 12px;
+    background: white;
+}

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏首页</title>
+    <link rel="stylesheet" href="playcss/indexlogo.css">
+    <link rel="stylesheet" href="playcss/playindex.css">
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div id="playall">
+        <div id="headline"></div>
+        <div id="playhead">
+            <div id="playheadmessage">
+              <div id="playheadlianjie">
+                  <ul id="playheadleftlidoms">
+                      <li><a href="">游戏介绍</a></li>
+                      <li><a href="">游戏新手</a></li>
+                      <li><a href="">游戏闯关</a></li>
+                      <li><a href="">游戏客服</a></li>
+                      <li><a href="">游戏信息</a></li>
+                      <li><a href="">人才招聘</a></li>
+                  </ul>
+              </div>
+              <div id="playheadlogo">
+                 <span class="iconfont icon-handplantstar" style="font-size: 50px;color: green;font-weight: bold;"></span>
+              </div>
+              <div id="playheadregist">
+                   <ul id="playheadrightlidoms">
+                       <li><a href="register.html">登录</a></li>
+                       <li><a href="register.html">注册</a></li>
+                   </ul>
+              </div>
+            </div>
+        </div>
+        <div id="middline"></div>
+        <div id="rotation">
+            <ul id="rotationbox">
+
+            </ul>
+        </div>
+        <div id="playbody">
+              
+        </div>
+        <div id="playfoot">
+              
+        </div>
+    </div>
+</body>
+<script src="playjs/playapple.js"></script>
+<script>
+    //首栏下拉菜单特效
+    let manue1 ={
+        "0":"游戏介绍",
+        "length":"1"
+    }
+    let manue2 ={
+        "0":"新手须知",
+        "1":"新手福利",
+        "length":"2"
+    }
+    let manue3 ={
+        "0":"五子棋",
+        "1":"九宫格",
+        "2":"星球大战",
+        "3":"天行",
+        "4":"扑克",
+        "length":"5"
+    }
+    let manue4 ={
+        "0":"客服邮箱",
+        "1":"客服电话",
+        "length":"2"
+    }
+    let manue5 ={
+        "0":"设计介绍",
+        "length":"1"
+    }
+    let manue6 ={
+        "0":"投递邮箱",
+        "1":"联系电话",
+        "2":"联系QQ",
+        "length":"3"
+    }
+    let menuarr = [manue1,manue2,manue3,manue4,manue5,manue6];
+    let playadressarr = ["weiqi.html","jiugongeplay.html","planeWare.html","gun.html","puke.html"];
+    let menudom = document.getElementById("playheadleftlidoms").children;
+    let menubox = 0;
+    let menuadom = 0;
+    let menulidom = 0;
+    for(let i=0;i<menuarr.length;i++){
+        menubox = document.createElement("ul");
+        menubox.className = "menubox";
+        for(let j=0;j<menuarr[i].length*1;j++){
+            menulidom = document.createElement("li");
+            menulidom.className = "menulidom";
+            menulidom.innerHTML = menuarr[i][j];
+            menubox.appendChild(menulidom);
+        }
+        menudom[i].appendChild(menubox)
+    }
+    //菜单特效
+    for(let i=0;i<menudom.length;i++){
+        menudom[i].onmouseenter = function(){
+            menudom[i].children[1].style.display = "block";
+        }
+        menudom[i].onmouseleave = function(){
+            menudom[i].children[1].style.display = "none";
+        }
+    }
+    let menuliselectdom = document.getElementsByClassName("menulidom");
+    for(let i=0;i<menuliselectdom.length;i++){
+        menuliselectdom[i].onmouseenter = function(){
+            menuliselectdom[i].style.background = "pink";
+            menuliselectdom[i].style.color = "red";
+        }
+        menuliselectdom[i].onmouseleave = function(){
+            menuliselectdom[i].style.background = "green";
+            menuliselectdom[i].style.color = "black";
+        }
+    }
+    let playlimenudom = menudom[2].children[1].children;
+    for(let i=0;i<playlimenudom.length;i++){
+        playlimenudom[i].onclick = function(){
+            location.href = playadressarr[i];
+        }
+    }
+    //构建轮播图
+    let rotation = document.getElementById("rotation");
+    let rotationbox = document.getElementById("rotationbox");
+    let apple = {
+        "idnum":"0",
+        "name":"apple",
+        "size":"20",
+        "color":"red",
+    }
+    let pear = {
+        "idnum":"1",
+        "name":"pear",
+        "size":"20",
+        "color":"purple",
+    }
+    let banana = {
+        "idnum":"2",
+        "name":"banana",
+        "size":"20",
+        "color":"orange",
+    }
+    let fruitarr = [apple,pear,banana];
+    for(let i=0;i<=fruitarr.length;i++){
+        if(i==fruitarr.length){
+          let lidoms = document.createElement("div");
+          lidoms.style.cssText = `
+             position:absolute;
+             bottom:10px;
+             left:450px;
+             width:300px;
+             height:30px;
+             display: flex;
+             justify-content: space-around;
+             align-items: center;
+          `;
+          for(let j=0;j<fruitarr.length;j++){
+              let lidoudou = document.createElement("li");
+              lidoudou.className = "doudoudoms"
+              lidoudou.style.cssText = `
+                 width:20px;
+                 height:20px;
+                 border-radius:50%;
+                 background:white;
+              `;
+              lidoms.appendChild(lidoudou);
+          }
+          rotation.appendChild(lidoms);
+        }else{
+          let lidoms = document.createElement("li");
+          lidoms.className = "lidoms";
+          lidoms.style.cssText = `
+            position:absolute;
+            top:0px;
+            width:1200px;
+            height:400px;
+          `;
+        lidoms.style.left = i*1200 + "px";
+        lidoms.style.background = fruitarr[i].color;
+        rotationbox.appendChild(lidoms);
+        }
+    }
+    let doudoup = document.getElementsByClassName("doudoudoms");
+    let rotationleft = Math.abs(Number(rotationbox.style.left)/1200);
+    rotationbox.style.transition = "all 1s linear";
+    let rotationp = 0;
+    let lunbotucontrolnum = 0;//控制轮播图的动态
+    setInterval(() => {
+        // console.log(rotationleft);
+        if(lunbotucontrolnum==0){
+            if(rotationleft<=0){
+                rotationp = 0
+            }
+            if(rotationleft>=fruitarr.length-1){
+                rotationp = 1
+            }
+            if(rotationp==0){
+                rotationleft++;
+            }else{
+                rotationleft--;
+            }
+            rotationbox.style.left = rotationleft*(-1200) + "px";
+            for(let i=0;i<doudoup.length;i++){
+                if(i==rotationleft){
+                    doudoup[i].style.background = "green";
+                }else{
+                    doudoup[i].style.background = "white";
+                }
+            }
+        }
+    }, 2000);
+    for(let i=0;i<doudoup.length;i++){
+        doudoup[i].onmouseenter = function(){
+            lunbotucontrolnum = 1;
+            for(let j=0;j<doudoup.length;j++){
+                if(i==j){
+                    doudoup[j].style.background = "green";
+                }else{
+                    doudoup[j].style.background = "white";
+                }
+            }
+            rotationbox.style.left = i*(-1200) + "px";
+        }
+        doudoup[i].onmouseleave = function(){
+            lunbotucontrolnum = 0;
+        }
+    }
+    //获取轮播图子图并对其内容进行构建
+    let lunbolidoms = document.getElementsByClassName("lidoms");
+    
+</script>
+</html>

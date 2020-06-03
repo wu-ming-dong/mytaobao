@@ -1,0 +1,45 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+ul,li{
+    list-style: none;
+}
+body,html{
+    width: 100%;
+    height: 100%;
+}
+#planeWareall{
+    width: 100%;
+    height: 100%;
+    background: black;
+}
+#planeWareplayground{
+    position: absolute;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    left:0px;
+    background: black;
+    overflow: hidden;
+    transition: all 0.9s linear;
+}
+#starrybattlefield{
+    position: absolute;
+    top: -150px;
+    left:5px;
+    width: 1310px;
+    height: 840px;
+    background: black;
+    border: 1px solid red;
+    overflow: hidden;
+    transition: all 0.9s linear;
+}
+#planebox{
+    position: absolute;
+    top:300px;
+    left:200px;
+    width: 100px;
+    height: 100px;
+    transition: all 0.9s linear;
+}

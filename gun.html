@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>枪战射击</title>
+    <link rel="stylesheet" href="playcss/gun.css">
+</head>
+<body>
+    <div id="playground">
+        <div id="playgroundear">
+            <div class="playgroundclass"></div>
+            <div class="playgroundclass"></div>
+            <div class="playgroundclass"></div>
+            <div class="playgroundclass"></div>
+            <div class="playgroundclass"></div>
+            <div class="playgroundclass"></div>
+        </div>
+    </div>
+</body>
+<script src="playjs/gun.js"></script>
+<script>
+    //陆地构造
+    let playgroundear = document.getElementById("playgroundear");
+    const grw=1500;//长
+    const grl=1000;//宽
+    const grh=400;//高
+    playgroundear.style.width = grw+"px";
+    playgroundear.style.height = grl+"px";
+    playgroundear.style.transforOrigin = grw/2+"px"+grl+"px";
+    let grounnddom = document.getElementsByClassName("playgroundclass");
+    for(let i=0;i<grounnddom.length;i++){
+        if(i>=0&&i<2){
+            grounnddom[i].style.width = grw+"px";
+            grounnddom[i].style.height = grl+"px";
+            if(i%2==0){
+                grounnddom[i].style.transform = "translateZ("+grh/2+'px'+")";
+                grounnddom[i].style.background = "green";
+            }else{
+                grounnddom[i].style.transform = "rotateX("+180+'deg'+")translateZ("+grh/2+'px'+")";
+                grounnddom[i].style.background = "green";
+            }
+        }
+        if(i>=2&&i<4){
+            grounnddom[i].style.width = grw+"px";
+            grounnddom[i].style.height = grh+"px";
+            if(i%2==0){
+                grounnddom[i].style.transform = "translateY("+(-0.5)*grh+'px'+")rotateX("+90+'deg'+")";
+                grounnddom[i].style.background = "yellow";
+            }else{
+                grounnddom[i].style.transform = "translateY("+(-0.5)*grh+'px'+")rotateX("+(-90)+'deg'+")translateZ("+grl+'px'+")";
+                grounnddom[i].style.background = "yellow";
+            }
+        }
+        if(i>=4&&i<6){
+            grounnddom[i].style.width = grh+"px";
+            grounnddom[i].style.height = grl+"px";
+            if(i%2==0){
+                grounnddom[i].style.transform = "translateX("+(-0.5)*grh+'px'+")rotateY("+90+'deg'+")";
+                grounnddom[i].style.background = "yellow";
+            }else{
+                grounnddom[i].style.transform = "translateX("+(-0.5)*grh+'px'+")rotateY("+(-90)+'deg'+")translateZ("+(-1)*grw+'px'+")";
+                grounnddom[i].style.background = "yellow";
+            }
+        }
+    }
+    playgroundear.style.transform = "rotateX("+10+'deg'+")rotateY("+0+'deg'+")rotateZ("+0+'deg'+")";
+
+</script>
+</html>

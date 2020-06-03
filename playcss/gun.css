@@ -1,0 +1,31 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+ul,li{
+    list-style: none;
+}
+#playground{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    background: pink;
+    transform-style: preserve-3d;
+    overflow: hidden;
+}
+#playgroundear{
+    position: absolute;
+    bottom:0px;
+    width: 400px;
+    height: 400px;
+    transform-style: preserve-3d;
+    /* perspective: 1000px; */
+    transform-origin: 200px 200px;
+    background: blue;
+}
+.playgroundclass{
+    position: absolute;
+    background: gray;
+}

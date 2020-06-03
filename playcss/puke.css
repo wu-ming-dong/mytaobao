@@ -1,0 +1,280 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+ul,li{
+    list-style: none;
+}
+#playground{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: green;
+}
+#playear{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid red;
+}
+.playlidoms{
+    border: 1px solid black;
+    height: 100px;
+    width: 400px;
+    position: absolute;
+}
+.pukeclass{
+    position:absolute;
+    left: 1px;
+    top: 1px;
+    width: 70px;
+    height: 100px;
+    border-radius: 6px;
+    transform-style: preserve-3d;
+}
+.playerpukeclass{
+    position:absolute;
+    left: 1px;
+    top: 1px;
+    width: 70px;
+    height: 100px;
+    border: 1px solid black;
+    border-radius: 6px;
+    transform-style: preserve-3d;
+    transform: rotateY(180deg);
+}
+#timeset{
+    width: 40px;
+    height: 40px;
+    background: pink;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.positivepiece{
+    position: absolute;
+    width: 70px;
+    height: 100px;
+    border-radius: 6px;
+    transform: translateZ(2px);
+    background: blue;
+    backface-visibility: hidden;
+}
+.playerpokeposclasss{
+    position: absolute;
+    width: 70px;
+    height: 100px;
+    border-radius: 6px;
+    transform: translateZ(2px);
+    background: blue;
+    backface-visibility: hidden;
+}
+.relitivepiece{
+    position: absolute;
+    width: 70px;
+    height: 100px;
+    border-radius: 6px;
+    transform: rotateY(180deg)translateZ(2px);
+    background: white;
+    backface-visibility: hidden;
+}
+.playerpokereliclass{
+    position: absolute;
+    width: 70px;
+    height: 100px;
+    border-radius: 6px;
+    transform: rotateY(180deg)translateZ(2px);
+    background: white;
+    backface-visibility: hidden;
+}
+.textclasss1{
+    width:10px;
+    height: 58px;
+    position: absolute;
+    top: 4px;
+    text-align: center;
+    border-radius: 6px;
+    line-height: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    backface-visibility: hidden;
+}
+.textclasss2{
+    width:10px;
+    height: 50px;
+    position: absolute;
+    border-radius: 6px;
+    line-height: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    right: 0px;
+    bottom:4px;
+    text-align: center;
+    transform: rotateZ(180deg);
+    backface-visibility: hidden;
+}
+.middleclass{
+    width:44px;
+    height: 80px;
+    border: 1px solid black;
+    position: absolute;
+    left: 12px;
+    top: 9px;
+    backface-visibility: hidden;
+}
+.imgclass1{
+    width: 14px;
+    height: 16px;
+    /* margin: 1px 4px; */
+    border-radius: 50%;
+    position: absolute;
+    backface-visibility: hidden;
+}
+.imgclass2{
+    width:44px;
+    height: 80px;
+    backface-visibility: hidden;
+}
+.playstyboxclass{
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    position: absolute;
+    top: 0px;
+    left:0px;
+    border-radius: 50%;
+    display: none;
+    transition: all 1s linear;
+}
+.playstyclass{
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 14px;
+    font-weight: bold;
+    background: pink;
+    color:black;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    border-radius: 50%;
+    z-index: 130;
+    transition: transform 1s linear;
+}
+.playstyclass:hover{
+    background: black;
+    color:red;
+    font-size: 18px;
+}
+.playerimgbox{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: -160px;
+    left: 150px;
+    background:yellow;
+}
+.playerpukbox{
+    width: 450px;
+    height: 100px;
+    position: absolute;
+    background: gray;
+}
+.playerselectbox{
+    width: 402px;
+    height: 40px;
+    position: absolute;
+    top: -50px;
+    left: 25px;
+    background: blue;
+    overflow: hidden;
+}
+.playerimg{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    border-radius: 20px;
+}
+.playermoney{
+    width: 140px;
+    height: 30px;
+    position: absolute;
+    background: red;
+    left: 105px;
+    bottom: 1px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 30px;
+    text-indent: 1em;
+}
+.playermoney>input{
+    width: 80px;
+    height: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    background: transparent;
+    border-color: transparent;
+    outline: none;
+}
+.playername{
+    width: 150px;
+    height: 25px;
+    position: absolute;
+    background: gray;
+    left: 105px;
+    bottom: 40px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 25px;
+    text-indent: 1em;
+}
+.playername>input{
+    width: 92px;
+    height: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    background: transparent;
+    border-color: transparent;
+    outline: none;
+}
+.selectuldoms{
+    width: 1800px;
+    height: 40px;
+    position: absolute;
+    background: gray;
+    left: -400px;
+}
+.selectlidoms{
+    width: 400px;
+    height: 40px;
+    position: absolute;
+    background: gray;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid black;
+}
+.selectbtnclass{
+    width: 80px;
+    height: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 15px;
+    background: white;
+    color: black;
+    outline: none;
+    border: none;
+}
+.selectbtnclass:hover{
+    background: green;
+    color: red;
+}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飞机大战</title>
+    <link rel="stylesheet" href="/playcss/planeWare.css">
+    <style>
+        /* #plane{
+            width: 200px;
+            height:200px;
+            position:absolute;
+        } */
+    </style>
+</head>
+<body>
+    <div id="planeWareall">
+        <div id="planeWareplayground">
+                <div id="starrybattlefield">
+                    <div id="planebox">
+
+                    </div>
+                </div>
+        </div>
+    </div>
+</body>
+<script src="playjs/opposeplane.js"></script>
+<script src="playjs/planeWare.js"></script>
+<script>
+     let playground = document.getElementById("starrybattlefield");
+     playground.style.width = "1310px";
+     playground.style.left = "5px";
+     let planebox = document.getElementById("planebox");
+     let plane = new PLANE(planebox,100);
+    //  console.log(plane);
+     planebox.style.top = "400px";
+     planebox.style.left = "200px";
+     let unitx = 50,unity = 10;
+     let playgroundleft = 0;
+     let planeboxnum = 0;
+     let planeboxnumcontrol = 0;
+     let planecolor = ["red","green","yellow","blue","pink","gray"];
+     let placolor1,placolor2;
+     let colorarr= [];
+     let opposeplaneobj = 0;
+     let myfiletime = 0;
+     let myballtime = 0;
+    //  驱使场景变长，并且战机对场景的相对位置不变
+    myfiletime = setInterval(() => {
+        //   console.log(playground.style.left);
+        if(parseInt(playground.style.width)>11000){
+            alert("游戏结束,谢谢参与")
+            clearInterval(myballtime);
+            clearInterval(myfiletime);
+            playground.innerHTML = "";
+        }
+        playground.style.width = parseInt(playground.style.width)*1 + unitx + "px";
+        playground.style.left = parseInt(playground.style.left)*1-unitx + "px";
+        planebox.style.left = parseInt(planebox.style.left)*1 + unitx + "px";
+        //在场景变长过程中对对场景障碍的设置
+        if(planeboxnumcontrol%10==0){
+            for(let i=0;i<parseInt(Math.random()*4+1);i++){
+                 for(let j=0;j<planecolor.length;j++){
+                    colorarr[j] = planecolor[j];
+                 }
+                // console.log(planecolor);
+                let opposeplane = document.createElement("div");
+                opposeplane.id = "opposeplane" + planeboxnum;
+                opposeplane.style.cssText = `
+                    position:absolute;
+                    top:50px;
+                    left:1100px;
+                    width:20px;
+                    height:20px;
+                    background:blue;
+                `;
+                opposeplane.style.left = Math.random()*50 + parseInt(playground.style.width)*1 +"px";
+                opposeplane.style.top = Math.random()*650 +i*10+ "px";
+                playground.appendChild(opposeplane);
+                opposeplaneobj = document.getElementById("opposeplane" + planeboxnum);
+                placolor2 = parseInt(Math.random()*colorarr.length);
+                placolor1 = colorarr[placolor2];
+                colorarr.splice(placolor2,1);
+                placolor2 = colorarr[parseInt(Math.random()*colorarr.length)]
+                let oplane = new OPPLANE(opposeplaneobj,20,placolor1,placolor2);
+                planeboxnum++;
+            }
+        }
+        planeboxnumcontrol++
+     }, 2000);
+//对战机发射炮弹进行设定
+let planebattery = document.getElementsByClassName(planebox.index);
+//炮弹的控制条件--1.总个数 ballnumcontrol
+//               2.是否发射（0，1）
+//               3.炮弹发射过程中的相对位置 
+//               4.每次发射炮弹的个数
+let ballnumcontrol =  5*100;
+let isshoot = "1";
+let ballnuitx=0;
+let ballnuity=0;
+let shootnum = 0;
+let planeballdoms = 0;
+let fatherbattery = 0;
+document.onclick = function(){
+    planeballdoms = document.getElementsByClassName("planeballdoms");
+    for(let i=0;i<planebattery.length;i++){
+        for(let j=0;j<5;j++){
+            let planeball = document.createElement("div");
+            planeball.className = "planeballdoms";
+            planeball.index = "1";
+            planeball.style.cssText = `
+                position:absolute;
+                width:5px;
+                height:5px;
+                background:orange;
+                transition:left 0.5s linear;
+                border-radius:50%;
+            `;
+            planeball.style.left = j*15+"px";
+            planeball.style.top =  "0px";
+            planebattery[i].appendChild(planeball);
+        }
+    }
+}
+myballtime=setInterval(() => {
+   planeballdoms = document.getElementsByClassName("planeballdoms");
+   for(let i=0;i<planeballdoms.length;i++){
+       fatherbattery= parseInt((i%25)/5);
+       //    console.log(fatherbattery);
+       if(planeballdoms[i].index==1){
+         planeballdoms[i].style.left = parseInt(planeballdoms[i].style.left) + 20 + "px";
+          if(parseInt(planeballdoms[i].style.left)>2000){
+            planeballdoms[i].style.background = "transparent";
+            planeballdoms[i].index = "0";
+            planeballdoms[i].style.left = "0px";
+          }
+       }
+   }
+}, 90);
+//由键盘上下左右键控制战机的移动
+let planeboxtop = 0;
+let planefieldtop = 0;
+let planeboxleft = 0;
+let firsttop = 0;
+let balldoms = 0;//炮弹节点
+document.onkeydown = function(e){
+    firsttop = parseInt(planebox.style.top);
+    planeboxtop = parseInt(planebox.style.top);
+    planefieldtop =  parseInt(playground.style.top);
+    planeboxleft = parseInt(planebox.style.left);
+    switch((e||event).keyCode){
+        case 37:planeboxleft-=unitx;break;
+        case 39:planeboxleft+=unitx;break;
+        case 38:planeboxtop-=unity;planefieldtop-=unity;break;
+        case 40:planeboxtop+=unity;planefieldtop+=unity;break;
+        default:break;
+    }
+    //对飞机的竖坐标进行修正
+    if(planeboxtop>150&&planeboxtop<650){
+        planebox.style.top = planeboxtop + "px";
+    }else{
+        if(planefieldtop<=0){planefieldtop=0;}
+        if(planefieldtop>=200){planefieldtop=200;}
+        playground.style.top = planefieldtop + "px";
+    }
+
+    planebox.style.left = planeboxleft + "px";
+    //对炮弹竖坐标相对位置的设定
+    planeballdoms = document.getElementsByClassName("planeballdoms");
+    for(let i=0;i<planeballdoms.length;i++){
+        planeballdoms[i].style.top = parseInt(planeballdoms[i].style.top)-planeboxtop+firsttop+"px";
+    }
+}
+//对战机对战效果的设置
+// let everyoposeplane = 0;
+//  setInterval(() => {
+//      for(let i=0;i<planeboxnum;i++){
+//         everyoposeplane = document.getElementById('opposeplane' + planeboxnum*1);
+//         if(parseInt(everyoposeplane.style.left)<parseInt(planebox.style.left)){
+//             veryoposeplane.style.display = "none";
+//         }
+//      }
+//  }, 1000);
+</script>
+</html>

@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>九宫格</title>
+    <link rel="stylesheet" href="playcss/jiugongeplay.css">
+</head>
+<body>
+    <div id="playroom">
+        <div id="playback">
+            <input type="button" value="退出游戏">
+            <div id="playbackshow">
+                  <li class="playbackliclas">是否退出本次游戏？</li>
+                  <li class="playbackliclas">退出游戏</li>
+                  <li class="playbackliclas">再玩一下</li>
+            </div>
+        </div>
+        <div id="jiugongeleft">
+            <div id="imgsselect">
+                游戏图片选择
+            </div>
+            <div id="imgsshow">
+                      
+            </div>
+        </div>
+        <div id="jiugongemiddle">
+             <div id="jiugongemiddleheadline">
+                
+             </div>
+             <div id="jiugongemiddleplayground">
+                
+             </div>
+        </div>
+        <div id="jiugongeright">
+            
+        </div>
+    </div>
+</body>
+<script>
+    //数据
+    //图片数据
+    let animall = {
+        "num": 15,
+        "egname":"animall",
+        "name": "动物",
+        "firstchar":"animal",
+        "endchar":".jpg"
+    }
+    let car = {
+        "num": 12,
+        "egname":"car",
+        "name": "车",
+        "firstchar":"car",
+        "endchar":".jpg"
+    }
+    let fruit = {
+        "num": 11,
+        "egname":"fruit",
+        "name": "水果",
+        "firstchar":"fruit",
+        "endchar":".jpg"
+    }
+    let goods = {
+        "num": 6,
+        "egname":"goods",
+        "name": "商品",
+        "firstchar":"goods",
+        "endchar":".jpg"
+    }
+    let people = {
+        "num": 7,
+        "egname":"people",
+        "name": "人",
+        "firstchar":"people",
+        "endchar":".jpg"
+    }
+    let view = {
+        "num": 11,
+        "egname":"view",
+        "name": "美景",
+        "firstchar":"view",
+        "endchar":".jpg"
+    }
+    //游戏记录数据
+    let playtime0 = {
+        "playid" :"123456",
+       "playertime":"2020-2-11",
+       "settime":"00.50.40.2"
+    }
+    let playtime1 = {
+        "playid" :"123456",
+       "playertime":"2020-2-12",
+       "settime":"00.52.40.31"
+    }
+    let playtime2 = {
+        "playid" :"123456",
+       "playertime":"2020-2-11",
+       "settime":"00.48.40.60"
+    }
+    let playtime3 = {
+       "playid" :"123456",
+       "playertime":"2020-2-11",
+       "settime":"00.48.48.22"
+    }
+    let playtime4 = {
+       "playid" :"123456",
+       "playertime":"2020-2-11",
+       "settime":"00.38.48.51"
+    }
+    let playtime5 = {
+       "playid" :"123456",
+       "playertime":"2020-2-11",
+       "settime":"00.44.46.40"
+    }
+    let maxscore = {
+        "maxtimedom":"2020-2-14",
+        "maxscoredom":"00.21.34.48"
+    }
+    let playercorearr = [playtime0,playtime1,playtime2,playtime3,playtime4,playtime5];
+    let timeunitarr = ["时","分","秒","ms"];
+    //构建右边区域的
+    let rightera = document.getElementById("jiugongeright");
+    let setera = document.createElement("div");
+    setera.style.cssText = `
+       position:absolute;
+       top:2px;
+       left:4px;
+       width: 292px;
+       height:300px;
+       border:1px solid red;
+    `;
+    rightera.appendChild(setera);
+    let righteraimgsbox = document.createElement("div");
+    righteraimgsbox.style.cssText = `
+      position:absolute;
+      top:2px;
+      left:3px;
+      width: 286px;
+      height:200px;
+      border:1px solid black;
+    `;
+    let righteraimgs = document.createElement("img");
+    righteraimgs.style.cssText = `
+      width: 286px;
+      height:200px;
+    `;
+    righteraimgs.src = "playimgs/jiugonggeplayimgs/car/"+"car" + parseInt(Math.random()*12) + ".jpg";
+    righteraimgsbox.appendChild(righteraimgs);
+    setera.appendChild(righteraimgsbox);
+    //建立选项菜单
+    let imgarr = [animall,car,fruit,goods,people,view]
+    let imgsselect = document.getElementById("imgsselect");
+    let imgsshow = document.getElementById("imgsshow");
+    let selectshowbox = document.createElement("ul");
+    selectshowbox.index = "0";
+    selectshowbox.style.cssText = `
+        position:absolute;
+        left:144px;
+        background:orange;
+        width:104px;
+        display:none;
+        z-index:20;
+    `;
+    for(let i=0;i<imgarr.length;i++){
+    let select = document.createElement("li");
+    select.style.cssText = `
+        float:left;
+        width:100px;
+        height:20px;
+        text-align:center;
+        margin:2px;
+        font-weight:bold;
+    `;
+    select.innerHTML = imgarr[i].name;
+    if(i%2==0){
+        select.style.color = "white";
+        select.style.background = "black";
+    }else{
+        select.style.color = "black";
+        select.style.background = "white";
+    }
+    selectshowbox.style.height = parseInt(selectshowbox.children.length)*28 +3 +"px";
+    selectshowbox.appendChild(select);
+    }
+    imgsselect.appendChild(selectshowbox);
+    //菜单栏绑定鼠标移入移出事件
+    imgsselect.onmouseenter = function(){
+        imgsselect.style.color = "red";
+        imgsselect.style.background = "green";
+        selectshowbox.style.display = "block";
+    }
+    imgsselect.onmouseleave = function(){
+            setTimeout(() => {
+                imgsselect.style.color = "green";
+                imgsselect.style.background = "gray";
+                selectshowbox.style.display = "none";
+            }, 3000);
+    }
+    //图片显示栏初始化
+    for(let k=0;k<car.num;k++){
+        let imgshowbox = document.createElement("li");
+        imgshowbox.className = "imgsshow";
+        imgshowbox.style.cssText = `
+            width:120px;
+            height:70px;
+            float:left;
+            margin:2px;
+            border:1px solid black;
+        `;
+        let imgs = document.createElement("img");
+        imgs.style.cssText = `
+            width:120px;
+            height:70px;
+        `;
+        imgs.src = "playimgs/jiugonggeplayimgs/car/"+"car" + k + ".jpg";
+        imgshowbox.appendChild(imgs);
+        imgsshow.appendChild(imgshowbox);
+    }
+    let selectlidoms = selectshowbox.children;
+    let selectp = 0;
+    //子选项绑定点击事件
+    let imgsshowlidom = imgsshow.children;
+    for(let i=0;i<selectlidoms.length;i++){
+        selectlidoms[i].onclick = function(){ 
+            imgsshow.innerHTML = "";
+            selectp = selectlidoms[i].innerHTML;
+            for(let j=0;j<imgarr.length;j++){
+                if(imgarr[j].name==selectp){
+                    selectp=j;
+                    break;
+                }
+            }
+            selectp = imgarr[selectp];
+            for(let k=0;k<selectp.num;k++){
+                let imgshowbox = document.createElement("li");
+                imgshowbox.className = "imgsshow";
+                imgshowbox.style.cssText = `
+                    width:120px;
+                    height:70px;
+                    float:left;
+                    margin:2px;
+                    border:1px solid black;
+                `;
+                let imgs = document.createElement("img");
+                imgs.style.cssText = `
+                    width:120px;
+                    height:70px;
+                `;
+                imgs.src = "playimgs/jiugonggeplayimgs/"+selectp.egname+"/"+selectp.firstchar + k + selectp.endchar;
+                imgshowbox.appendChild(imgs);
+                imgsshow.appendChild(imgshowbox);
+            }
+            imgsshowlidom = imgsshow.children;
+            //左边图片点击效果
+            for(let i=0;i<imgsshowlidom.length;i++){
+                // console.log(imgsshowlidom[i].children);
+                imgsshowlidom[i].onclick = function(){
+                    // console.log(imgsshowlidom[i].children[0].src);
+                    righteraimgs.src = imgsshowlidom[i].children[0].src;
+                }
+            }
+            setTimeout(() => {
+                imgsselect.style.color = "green";
+                imgsselect.style.background = "gray";
+                selectshowbox.style.display = "none";
+            }, 3000);
+        }
+    }
+    //创建难度等级设置
+    let rightsetgray = document.createElement("div");
+    rightsetgray.style.cssText = `
+      position:absolute;
+      top:210px;
+      left:10px;
+      width:270px;
+      height:30px;
+      border:1px solid red;
+    `;
+    let rightsetcolor = ["green","purple","red"];
+    let rightsettext = ["低","中","高"];
+    for(let i=0;i<3;i++){
+      let rightsetgrayuldom = document.createElement("ul");
+      rightsetgrayuldom.style.float = "left";
+      rightsetgrayuldom.style.margin = "5px 2px";
+      rightsetgrayuldom.style.fontSize = "12px";
+      rightsetgrayuldom.style.fontWeight = "bold";
+      rightsetgrayuldom.style.textAlign = "center";
+      if(i==1){
+        rightsetgrayuldom.style.border = "1px solid black";
+        rightsetgrayuldom.style.width = "150px";
+        rightsetgrayuldom.style.height = "20px";
+        rightsetgrayuldom.style.borderRadius ="10px";
+        rightsetgrayuldom.style.overflow = "hidden";
+        for(let j=0;j<3;j++){
+            let rightsetgraylidom = document.createElement("li");
+            rightsetgraylidom.className = "rightsetlidom";
+            rightsetgraylidom.style.cssText = `
+               float:left;
+               width:50px;
+               height:20px;
+            `;
+            if(j<2){
+                rightsetgraylidom.style.background = rightsetcolor[j];
+            }
+            rightsetgrayuldom.appendChild(rightsetgraylidom);
+        }
+      }else{
+        rightsetgrayuldom.style.height = "20px";
+        if(i==0){
+            rightsetgrayuldom.style.width = "60px";
+            rightsetgrayuldom.innerHTML = "难度设置："
+        }else{
+            rightsetgrayuldom.style.width = "40px";
+            rightsetgrayuldom.style.fontSize = "16px";
+            rightsetgrayuldom.id = "rightsettext";
+            rightsetgrayuldom.innerHTML = "中"
+        }
+      }
+      rightsetgray.appendChild(rightsetgrayuldom);
+    }
+    setera.appendChild(rightsetgray);
+    //给等级绑定事件
+    let setgraylidom = document.getElementsByClassName("rightsetlidom");
+    let setgraytext = document.getElementById("rightsettext");
+    let colorchangecontro = 0;
+    for(let i=0;i<setgraylidom.length;i++){
+        setgraylidom[i].onclick = function(){
+            if(colorchangecontro==0){
+                for(let j=0;j<setgraylidom.length;j++){
+                    if(j<=i){
+                        setgraylidom[j].style.background = rightsetcolor[j];
+                        setgraytext.style.color = rightsetcolor[j];
+                        setgraytext.innerHTML = rightsettext[j];
+                    }else{
+                        setgraylidom[j].style.background = "white";
+                    }
+                }
+            }
+        }
+    }
+    //构建时间设定
+    let righttimeset = document.createElement("div");
+    righttimeset.style.cssText = `
+      position:absolute;
+      top:250px;
+      left:10px;
+      width:270px;
+      height:30px;
+      border:1px solid red;
+    `;
+    setera.appendChild(righttimeset);
+    for(let i=0;i<2;i++){
+        let righttimesetuldom = document.createElement("ul");
+        righttimesetuldom.style.float = "left";
+        righttimesetuldom.style.margin = "5px 2px";
+        righttimesetuldom.style.fontSize = "12px";
+        righttimesetuldom.style.fontWeight = "bold";
+        righttimesetuldom.style.textAlign = "center";
+        righttimesetuldom.style.height = "20px";
+        if(i==0){
+            righttimesetuldom.style.width = "60px";
+            righttimesetuldom.innerHTML = "时间设置：";
+        }else{
+            righttimesetuldom.style.width = "200px";
+            righttimesetuldom.style.border = "1px solid black";
+            righttimesetuldom.style.borderRadius = "10px";
+            righttimesetuldom.style.overflow = "hidden";
+            for(let j=0;j<4;j++){
+                let righttimesetlidom = document.createElement("input");
+                righttimesetlidom.className = "setlidoms";
+                righttimesetlidom.style.cssText = `
+                   float:left;
+                   width:50px;
+                   height:20px;
+                   border:none;
+                   text-align:center;
+                   font-weight:bold;
+                `;
+                righttimesetlidom.value = "1" + timeunitarr[j];
+                if(j%2==0){
+                    righttimesetlidom.style.background = "white";
+                    righttimesetlidom.style.color = "black";
+                }else{
+                    righttimesetlidom.style.background = "black";
+                    righttimesetlidom.style.color = "white";
+                }
+                righttimesetuldom.appendChild(righttimesetlidom);
+            }
+        }
+        righttimeset.appendChild(righttimesetuldom);
+    }
+    //构建玩家信息区
+    let playerinfor = document.createElement("div");
+    playerinfor.style.cssText = `
+       position:absolute;
+       top:310px;
+       left:4px;
+       width: 292px;
+       height:180px;
+       border:1px solid red;
+    `;
+    rightera.appendChild(playerinfor);
+    let playerall = document.createElement("div");
+    playerall.style.cssText = `
+       width: 250px;
+       height:25px;
+       margin:auto;
+       text-align:center;
+       font-size:16px;
+       font-weight:bold;
+       color:green;
+    `;
+    playerall.innerText = "玩家信息";
+    playerinfor.appendChild(playerall);
+    let playerid = document.createElement("div");
+    playerid.style.cssText = `
+       width: 260px;
+       height:25px;
+       margin:auto;
+       font-size:16px;
+       font-weight:bold;
+       color:black;
+    `;
+    for(let i=0;i<2;i++){
+        let playeridlidom = document.createElement("li");
+        playeridlidom.style.cssText = `
+           float:left;
+           height:22px;
+           font-size:12px;
+           font-weight:bold;
+        `;
+        if(i==0){
+            playeridlidom.style.width = "60px";
+            playeridlidom.style.textAlign = "center";
+            playeridlidom.style.lineHeight = "22px";
+            playeridlidom.innerText = "玩家ID：";
+        }else{
+            playeridlidom.style.width = "190px";
+            let playeridlidominput = document.createElement("input");
+            playeridlidominput.id = "playerid";
+            playeridlidominput.style.cssText = `
+               width:188px;
+               height:18px;
+               vertical-align:top;
+               font-weight:bold;
+               outline:none;
+            `;
+            playeridlidominput.value = playercorearr[0].playid;
+            playeridlidominput.readOnly="readOnly";
+            playeridlidom.appendChild(playeridlidominput);
+        }
+        playerid.appendChild(playeridlidom);
+    }
+    playerinfor.appendChild(playerid);
+    let playergamrecord  = document.createElement("div");
+    playergamrecord.style.cssText = `
+       position:relative;
+       width: 260px;
+       height:120px;
+       margin:auto;
+       font-size:16px;
+       font-weight:bold;
+       color:black;
+       border:1px solid black;
+    `;
+    playerinfor.appendChild(playergamrecord);
+    for(let i=0;i<4;i++){
+        let playerrecord = document.createElement("div");
+        playerrecord.className = "playersetddom";
+        if(i<2){
+            playerrecord.style.cssText = `
+               position:absolute;
+               height:22px;
+               width:130px;
+               top:0px;
+               text-align:center;
+            `;
+            if(i==0){
+                playerrecord.innerText = "玩家纪录";
+                playerrecord.style.background = "black";
+                playerrecord.style.color = "white";
+            }else{
+                playerrecord.innerText = "最高纪录";
+                playerrecord.style.background = "white";
+                playerrecord.style.color = "black";
+            }
+            playerrecord.style.left = i*130 + "px";
+        }else{
+            playerrecord.style.cssText = `
+               position:absolute;
+               height:92px;
+               width:254px;
+               top:22px;
+               text-align:center;
+               overflow:hidden;
+            `;
+            if(i==2){
+                let p="",sp=0;
+                playerrecord.style.display = "block"; 
+                for(let j=0;j<playercorearr.length;j++){
+                    let playercoreshowlidom = document.createElement("li");
+                    playercoreshowlidom.className = "playercoreli";
+                    playercoreshowlidom.style.cssText = `
+                        position:absolute;
+                        left:2px;
+                        height:20px;
+                        width:254px;
+                        transition:all 1s linear;
+                    `;
+                    playercoreshowlidom.style.top = j*20 + "px";
+                    for(let k=0;k<2;k++){
+                        let playercoreshowp = document.createElement("p");
+                        playercoreshowp.style.cssText = `
+                             text-align:center;
+                             height:18px;
+                             line-height:18px;
+                             font-size:12px;
+                        `;
+                        if(k==1){
+                            // console.log(playercorearr[j]);
+                            playercoreshowp.style.width = "80px";
+                            playercoreshowp.style.float = "right";
+                            playercoreshowp.innerText = playercorearr[j].playertime;
+                        }else{
+                            // console.log(playercorearr[j]);
+                            playercoreshowp.style.width = "150px";
+                            playercoreshowp.style.float = "left";
+                            p ="";
+                            sp = 0;
+                            for(let m=0;m<playercorearr[j].settime.length;m++){
+                                if(playercorearr[j].settime[m]=="."){
+                                    p += timeunitarr[sp];
+                                    sp++
+                                }else{
+                                    p += playercorearr[j].settime[m];
+                                }
+                            }
+                            p += timeunitarr[sp];
+                            playercoreshowp.innerText = p;
+                        }
+                        playercoreshowlidom.appendChild(playercoreshowp);
+                    }
+                    if(j%2==0){
+                        playercoreshowlidom.style.background = "green";
+                        playercoreshowlidom.style.color = "white"; 
+                    }else{
+                        playercoreshowlidom.style.background = "white";
+                        playercoreshowlidom.style.color = "green"; 
+                    }
+                    playerrecord.appendChild(playercoreshowlidom);
+                }
+            }else{
+                playerrecord.style.display = "none"; 
+                let playercoremaxlidom = document.createElement("li");
+                for(let j=0;j<2;j++){
+                     let playercormaxshowp = document.createElement("p");
+                     playercormaxshowp.style.cssText = `
+                        width:240px;
+                        height:30px;
+                        margin:auto;
+                        text-align:center;
+                        line-height:30px;
+                        border:3px solid black;
+                        background:green;
+                        color:red;
+                     `;
+                     if(j==0){
+                        playercormaxshowp.innerText = maxscore.maxtimedom;
+                     }else{
+                         let playercormaxp = "";
+                         let s = 0;
+                         for(let k=0;k<maxscore.maxscoredom.length;k++){
+                             if(maxscore.maxscoredom[k]=="."){
+                                playercormaxp += timeunitarr[s];
+                                s++;
+                             }else{
+                                playercormaxp += maxscore.maxscoredom[k];
+                             }
+                         }
+                         playercormaxp += timeunitarr[s];
+                         playercormaxshowp.innerText = playercormaxp;
+                     }
+                     playercoremaxlidom.appendChild(playercormaxshowp);
+                }
+                playerrecord.appendChild(playercoremaxlidom);
+            }
+        }
+        playergamrecord.appendChild(playerrecord);
+    }
+    //给玩家记录绑定动态效果
+     let playercoreli = document.getElementsByClassName("playercoreli");
+     let playercorelitop = 0;
+     setInterval(() => {
+        for(let i=0;i<playercoreli.length;i++){
+            playercorelitop = parseInt(playercoreli[i].style.top)/20;
+            // console.log(playercorelitop);
+            if(playercorelitop<0){
+                playercorelitop = parseInt(playercoreli.length+1);
+                playercoreli[i].style.display = "none";
+            }else{
+                playercoreli[i].style.display = "block";
+            }
+            playercorelitop -=1;
+            playercoreli[i].style.top = 20*playercorelitop + "px";
+        }
+     }, 1000);
+     let playersetddom = document.getElementsByClassName("playersetddom");
+     for(let i=0;i<playersetddom.length-2;i++){
+        playersetddom[i].onmouseenter = function(){
+            for(let j=0;j<playersetddom.length-2;j++){
+                if(i==j){
+                    playersetddom[j].style.background = "black";
+                    playersetddom[j].style.color = "white";
+                    playersetddom[j+2].style.display = "block";
+                }else{
+                    playersetddom[j].style.background = "white";
+                    playersetddom[j].style.color = "black";
+                    playersetddom[j+2].style.display = "none";
+                }
+            }
+        }
+     }
+     //中间游戏区构建
+     let jiugongemiddleheadline = document.getElementById("jiugongemiddleheadline");
+     let jiugongemiddleplayground = document.getElementById("jiugongemiddleplayground");
+     for(let i=0;i<5;i++){
+         let headlinelidom = document.createElement("li");
+         headlinelidom.className = "hdlidom"
+         headlinelidom.style.cssText = `
+            position:absolute;
+            top:2px;
+            width:100px;
+            height:30px;
+            line-height:30px;
+            text-align:center;
+            border:1px solid black;
+            border-radius:10px;
+         `;
+         if(i==4){
+            headlinelidom.style.border = "transparent";
+            headlinelidom.innerHTML = `
+              <input type="button" value="开始/结束" id="playbutton">
+            `;
+         }else{
+            headlinelidom.innerHTML = "1" + timeunitarr[i]; 
+         }
+         headlinelidom.style.left = i*100+"px";
+         jiugongemiddleheadline.appendChild(headlinelidom);
+     }
+     let setlidoms = document.getElementsByClassName("setlidoms");
+     let hdlidom = document.getElementsByClassName("hdlidom");
+     for(let i=0;i<setlidoms.length;i++){
+        setlidoms[i].oninput = function(){
+            if(parseInt(setlidoms[i].value)>=60){
+                 alert("时间设定超出范围,请重行输入！")
+                 setlidoms[i].value = "1"+timeunitarr[i];
+            }else{
+                hdlidom[i].innerHTML = parseInt(setlidoms[i].value)+timeunitarr[i];
+                setlidoms[i].value = parseInt(setlidoms[i].value)+timeunitarr[i];
+            }
+        }
+     }
+     //给游戏区传输图片
+     let middleplayground = document.getElementById("jiugongemiddleplayground");
+     let playground = document.createElement("img");
+     setInterval(() => {
+        playground.src = righteraimgs.src;
+     }, 10);
+     playground.style.cssText = `
+         width:700px;
+         height:450px;
+     `;
+     middleplayground.appendChild(playground);
+     let playbutton = document.getElementById("playbutton");
+     let mytime = 0;
+     let playh = parseInt(hdlidom[0].innerHTML);
+     let playm = parseInt(hdlidom[1].innerHTML);
+     let plays = parseInt(hdlidom[2].innerHTML);
+     let playms = parseInt(hdlidom[3].innerHTML);
+     let imgslidomnum = 0;//防止playbutton多次触发
+     let playliimgsdom = 0;//图片排列的classname
+     let playcontrolnum = 0;//控制playbutton的触发结果
+     playbutton.onclick = function(){
+         if(playcontrolnum%2==0){
+            //九宫格排列设置
+            colorchangecontro = 1;//控制难度设置在游戏期间的变化
+            if(imgslidomnum==0){
+                middleplayground.innerHTML = "";
+                let playuldom = document.createElement("ul");
+                playground.style.display = "none";
+                playuldom.style.cssText = `
+                position:relative;
+                width:700px;
+                height:450px;
+                background:green;
+                `;
+                middleplayground.appendChild(playuldom);
+                let rightsetlidom = document.getElementsByClassName("rightsetlidom");
+                let plaunum = 0;
+                if(rightsetlidom[2].style.background=="white"){
+                    if(rightsetlidom[1].style.background=="white"){
+                    plaunum = 3;
+                    }else{
+                    plaunum = 4;
+                    }
+                }else{
+                plaunum = 5;
+                }
+                let playx = 700/plaunum;
+                let playy = 450/plaunum;
+                let xx=0,yy=-1;
+                let xyarr = [];
+                for(let i=0;i<plaunum*plaunum;i++){
+                    if(i%plaunum==0){
+                    yy++;
+                    xx=0;
+                    }
+                    xyarr[i] =[xx,yy];
+                    xx++;
+                };
+                let playxy = 0;
+                let again = xyarr;
+            //  console.log(again);
+            //  console.log(xyarr);
+                for(let i=0;i<plaunum*plaunum;i++){
+                    let playlidom = document.createElement("li");
+                    playlidom.className = "playlidom";
+                    let playimg =document.createElement("img");
+                    playimg.src = righteraimgs.src;
+                    playimg.style.cssText = `
+                    position:absolute;
+                    width:700px;
+                    height:450px;
+                    `;
+                    playlidom.style.cssText = `
+                    position:absolute;
+                    width:${playx}px;
+                    height:${playy}px;
+                    border:1px solid black;
+                    overflow:hidden;
+                    z-index:10;
+                    `;
+                    
+                    playlidom.style.left = again[i][0]*playx + "px";
+                    playlidom.style.top = again[i][1]*playy + "px";
+                    playimg.style.left = -1*again[i][0]*playx + "px";
+                    playimg.style.top = -1*again[i][1]*playy + "px";
+                    playlidom.appendChild(playimg);
+                    playuldom.appendChild(playlidom);
+                }
+                let playimglidoms = document.getElementsByClassName("playlidom");
+                //图片随机排列
+                for(let i=0;i<plaunum*plaunum;i++){
+                    playxy = parseInt(Math.random()*again.length);
+                    playimglidoms[i].style.left = again[playxy][0]*playx + "px";
+                    playimglidoms[i].style.top = again[playxy][1]*playy + "px";
+                    again.splice(playxy,1);
+                    console.log(playimglidoms[i].style.zIndex);
+                }
+                //图片的跟随事件与交换
+                playliimgsdom = document.getElementsByClassName("playlidom");
+                let playdownlix = 0,playdovnliy = 0;
+                let playdownlileft = 0,playdownlitop = 0;
+                let changexy = 0;
+                let playuplix =0,playupliy = 0;
+                let plarupchangex = 0,plarupchangey = 0;
+                let putorup = 0;
+                let platevt1 = 0;
+                let platevt2 = 0;
+                for(let i=0;i<playliimgsdom.length;i++){
+                    // playliimgsdom[i].onmousedown = function(event){
+                    //     let platevt1 = event||window.event;
+                    //     playdownlix = platevt1.clientX;
+                    //     playdovnliy = platevt1.clientY;
+                    //     playdownlileft = parseInt(parseFloat(playliimgsdom[i].style.left)/playx);
+                    //     playdownlitop = parseInt(parseFloat(playliimgsdom[i].style.top)/playy);
+                    //     // console.log(playdownlix);
+                    //     // console.log(playdovnliy);
+                    //     playliimgsdom[i].style.zIndex = "100";
+                    //     playliimgsdom[i].onmousemove = function(event){
+                    //         let platevt2 = event||window.event;
+                    //         if(platevt2.clientX<playdownlix){platevt2.clientX=playdownlix};
+                    //         if(platevt2.clientX>((plaunum-1)*playx+playdownlix)){platevt2.clientX=(plaunum-1)*playx+playdownlix};
+                    //         if(platevt2.clientY<playdovnliy){platevt2.clientY=playdovnliy};
+                    //         if(platevt2.clientY>((plaunum-1)*playy+playdovnliy)){platevt2.clientY=(plaunum-1)*playy+playdovnliy};
+                    //         playliimgsdom[i].style.left = platevt2.clientX-playdownlix + "px";
+                    //         playliimgsdom[i].style.top = platevt2.clientY-playdovnliy + "px";
+                    //     }
+                    // }
+                    // playliimgsdom[i].onmouseup = function(){
+                    //     playuplix = parseInt(parseFloat(playliimgsdom[i].style.left)/playx);
+                    //     playupliy = parseInt(parseFloat(playliimgsdom[i].style.top)/playy);
+                    //     for(let j=0;j<playliimgsdom.length;j++){
+                    //         plarupchangex = parseInt(parseFloat(playliimgsdom[j].style.left)/playx);
+                    //         plarupchangey = parseInt(parseFloat(playliimgsdom[j].style.top)/playy);
+                    //         if((plarupchangex==playuplix)&&(plarupchangey==playupliy)){
+                    //             playliimgsdom[i].style.left = plarupchangex*playx + "px";
+                    //             playliimgsdom[i].style.top = plarupchangey*playy + "px";
+                    //             playliimgsdom[j].style.left = playdownlileft*playx + "px";
+                    //             playliimgsdom[j].style.top = playdownlitop*playy + "px";
+                    //         }else{
+                    //             playliimgsdom[i].style.left = playdownlileft*playx + "px";
+                    //             playliimgsdom[i].style.top = playdownlitop*playy + "px";
+                    //         }
+                    //         playliimgsdom[i].style.zIndex = "10";
+                    //     }
+                    //     playliimgsdom[i].onmousedown =  "";
+                    // }
+
+                    playliimgsdom[i].onclick = function(event){
+                        //初次点击移动、二次点击交换并且putorup归0
+                        if(putorup==0){
+                            // 初次点击移动
+                            platevt1 = event||window.event;
+                            //获取移动框的坐标
+                            playdownlix = platevt1.clientX;
+                            playdovnliy = platevt1.clientY;
+                            playdownlileft = parseInt(parseFloat(playliimgsdom[i].style.left)/playx);
+                            playdownlitop = parseInt(parseFloat(playliimgsdom[i].style.top)/playy);
+                            console.log("playdownlileft"+playdownlileft,"playdownlitop"+playdownlitop);
+                            playliimgsdom[i].style.zIndex = "100";
+                            playliimgsdom[i].onmousemove = function(event){
+                                
+                                platevt2 = event||window.event;
+                                if(platevt2.clientX<playdownlix){platevt2.clientX=playdownlix};
+                                if(platevt2.clientX>((plaunum-1)*playx+playdownlix)){platevt2.clientX=(plaunum-1)*playx+playdownlix};
+                                if(platevt2.clientY<playdovnliy){platevt2.clientY=playdovnliy};
+                                if(platevt2.clientY>((plaunum-1)*playy+playdovnliy)){platevt2.clientY=(plaunum-1)*playy+playdovnliy};
+                                playliimgsdom[i].style.left = platevt2.clientX-playdownlix + "px";
+                                playliimgsdom[i].style.top = platevt2.clientY-playdovnliy + "px";
+                                playuplix = parseInt(parseFloat(playliimgsdom[i].style.left)/playx);
+                                playupliy = parseInt(parseFloat(playliimgsdom[i].style.top)/playy);
+                            }
+                        }else{
+                          //二次点击交换并且putorup归0
+                            // playuplix = parseInt(parseFloat(playliimgsdom[i].style.left)/playx);
+                            // playupliy = parseInt(parseFloat(playliimgsdom[i].style.top)/playy);
+                            for(let j=0;j<playliimgsdom.length;j++){
+                                plarupchangex = parseInt(parseFloat(playliimgsdom[j].style.left)/playx);
+                                plarupchangey = parseInt(parseFloat(playliimgsdom[j].style.top)/playy);
+                                // console.log("plarupchangex"+plarupchangex,"plarupchangey"+plarupchangey);
+                                // console.log("playuplix"+playuplix,"playupliy"+playupliy);
+                                if((plarupchangex==playuplix)&&(plarupchangey==playupliy)){
+                                    console.log("plarupchangex"+plarupchangex,"plarupchangey"+plarupchangey);
+                                    console.log("playuplix"+playuplix,"playupliy"+playupliy);
+                                    console.log("playdownlileft"+playdownlileft,"playdownlitop"+playdownlitop);
+                                    playliimgsdom[j].style.left = playdownlileft*playx + "px";
+                                    playliimgsdom[j].style.top = playdownlitop*playy + "px";
+                                    playliimgsdom[i].style.left = playuplix*playx + "px";
+                                    playliimgsdom[i].style.top = playupliy*playy + "px";
+                                }else{
+                                    playliimgsdom[i].style.left = playdownlileft*playx + "px";
+                                    playliimgsdom[i].style.top = playdownlitop*playy + "px";
+                                }
+                                playliimgsdom[i].style.zIndex = "10";
+                            }
+                            playliimgsdom[i].onmousemove =  " ";
+                            putorup=-1;
+                        }
+                        putorup++;
+                    }
+                }
+            }
+            //防止游戏期间时间设定发生改变
+            for(let i=0;i<setlidoms.length;i++){
+            setlidoms[i].readOnly = "readOnly";
+            }
+            //倒计时设置
+            if(mytime!=0){
+            clearInterval(mytime);
+            }
+            mytime = setInterval(() => {
+            playh = parseInt(hdlidom[0].innerHTML);
+            playm = parseInt(hdlidom[1].innerHTML);
+            plays = parseInt(hdlidom[2].innerHTML);
+            playms = parseInt(hdlidom[3].innerHTML);
+                if(playms>0){
+                hdlidom[3].innerHTML = --playms + timeunitarr[3];
+                }else{
+                    if(plays>0){
+                    hdlidom[2].innerHTML = --plays + timeunitarr[2];
+                    hdlidom[3].innerHTML = 60 + timeunitarr[3];
+                    }else{
+                    if(playm>0){
+                        hdlidom[1].innerHTML = --playm + timeunitarr[1];
+                        hdlidom[2].innerHTML = 60 + timeunitarr[2];
+                    }else{
+                        if(playh>0){
+                            hdlidom[0].innerHTML = --playh + timeunitarr[0];
+                            hdlidom[1].innerHTML = 60 + timeunitarr[1];
+                        }else{
+                            for(let i=0;i<setlidoms.length;i++){
+                                setlidoms[i].readOnly = "";
+                            }
+                            playground.style.display = "block";
+                            alert("游戏结束！");
+                            colorchangecontro = 0;
+                            clearInterval(mytime);
+                            for(let j=0;j<hdlidom.length;j++){
+                                hdlidom[j].innerHTML = parseInt(setlidoms[j].value)+timeunitarr[j];
+                            }
+                        }
+                    }
+                  }
+                }
+            }, 17);
+        }else{
+            clearInterval(mytime);
+            for(let i=0;i<setlidoms.length;i++){
+                hdlidom[i].innerHTML = parseInt(setlidoms[i].value)+timeunitarr[i];
+                setlidoms[i].value = parseInt(setlidoms[i].value)+timeunitarr[i];
+            }
+            for(let i=0;i<setlidoms.length;i++){
+               setlidoms[i].readOnly = "";
+            }
+            colorchangecontro = 0;
+        }
+         playcontrolnum++; 
+     }
+     //退出游戏选项设置
+     let playback = document.getElementById("playback").children[0];
+     let playbackshow = document.getElementById("playbackshow");
+     playback.onclick = function(){
+        playbackshow.style.display = "block";
+     }
+     let playbackliclas = document.getElementsByClassName("playbackliclas");
+     for(let i=1;i<3;i++){
+        playbackliclas[i].style.width = "80px";
+        playbackliclas[i].style.height = "30px";
+        playbackliclas[i].style.top = "80px";
+        playbackliclas[i].style.borderRadius = "10px";
+        playbackliclas[i].style.background = "blue";
+        playbackliclas[i].style.left = 10+(i-1)*100+"px";
+        playbackliclas[i].onmouseenter = function(){
+            playbackliclas[i].style.background = "black";
+            playbackliclas[i].style.color = "red";
+        }
+        playbackliclas[i].onmouseleave = function(){
+            playbackliclas[i].style.background = "blue";
+            playbackliclas[i].style.color = "black";
+        }
+     }
+     playbackliclas[1].onclick = function(){
+           playbackshow.style.display = "none";
+           location.href = "index.html";
+     }
+     playbackliclas[2].onclick = function(){
+        playbackshow.style.display = "none";
+     }
+</script>
+</html>

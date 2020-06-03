@@ -1,0 +1,359 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+ul,li{
+    list-style: none;
+}
+#playall{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: green;
+}
+#newsshowbox{
+    height:30px;
+}
+#qipanwaiwei{
+    width: 570px;
+    height: 570px;
+    margin: auto;
+    background: yellow;
+    position:relative;
+}
+#qipanneiwei{
+    width: 540px;
+    height: 540px;
+    background: black;
+    position:absolute;
+    top:15px;
+    left:15px;
+}
+.ydoms{
+    height: 28px;
+    width: 538px;
+    position: absolute;
+    border: 1px solid black;
+    z-index:0;
+}
+.xdoms{
+    width: 24px;
+    height: 24px;
+    background: gray;
+    border: 2px solid black;
+    position: absolute;
+    z-index: 0;
+}
+.chessdom{
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    position: absolute;
+    background: green;
+    transform-origin: 7px 7px;
+    transform: translateZ(20px);
+    z-index: 20;
+}
+#leftbox{
+    width: 200px;
+    height: 500px;
+    background: white;
+    position: absolute;
+    top: 30px;
+    left: 10px;
+}
+#playershow{
+    width: 200px;
+    height: 200px;
+    background: pink;
+    position: absolute;
+}
+#redplayer{
+    width: 200px;
+    height: 100px;
+}
+#blaplayer{
+    width: 200px;
+    height: 100px;
+}
+.playercolor{
+    width: 180px;
+    height: 20px;
+    margin:3px 5px;
+    text-align: center;
+    font-weight: bold;
+}
+.playercolor>p{
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    border-radius: 50%;
+    float:left;
+}
+.playername{
+    width: 180px;
+    height: 20px;
+    margin:3px 5px;
+    border: 1px solid black;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+}
+.playername>input{
+    width: 130px;
+    font-weight: bold;
+    text-align: center;
+}
+.playerid{
+    width: 180px;
+    height: 20px;
+    margin:3px 5px;
+    border: 1px solid black;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+}
+.playerid>input{
+    width: 156px;
+    font-weight: bold;
+    text-align: center;
+}
+.playernew{
+    width: 180px;
+    height: 20px;
+    margin:3px 5px;
+    border: 1px solid black;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+}
+.playernew>input{
+    width: 115px;
+    font-weight: bold;
+    text-align: center;
+}
+#leftboxbtn1{
+    width: 60px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    top:4px;
+    left:70px;
+}
+#playset{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 210px;
+    background: pink;
+}
+#playsethead{
+    width: 100px;
+    height: 30px;
+    margin: auto;
+    font-weight: bold;
+    line-height: 30px;
+    color: green;
+}
+#timeall{
+    width: 180px;
+    height: 20px;
+    margin:3px 5px;
+    border: 1px solid black;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+}
+#timeall>input{
+    width: 100px;
+}
+#setlong{
+    width: 180px;
+    height: 20px;
+    margin:3px 5px;
+    border: 1px solid black;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+}
+#setlong>input{
+    width: 114px;
+}
+#playsetbtn{
+    width: 200px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid black;
+}
+#playsetbtn>input{
+    width: 100px;
+    height: 20px;
+}
+#playsetbtn>input:hover{
+    background: green;
+    color: red;
+}
+#playgoback{
+    position: absolute;
+    top: 450px;
+    width: 100px;
+    left: 50px;
+}
+#playgoback:hover{
+    background: green;
+    color: red;
+}
+#rightbox{
+    width: 300px;
+    height: 500px;
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    background: white;
+}
+#jishiqi{
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    width: 200px;
+    height: 80px;
+    background: pink;
+}
+#jishiqi>h3{
+    width: 100px;
+    height: 30px;
+    margin: auto;
+    text-align: center;
+    line-height: 20px;
+}
+#jishiqishow{
+    width: 180px;
+    height: 40px;
+    margin: auto;
+    text-align: center;
+    line-height: 40px;
+    background: white;
+}
+#playernow{
+    width: 280px;
+    height: 200px;
+    background: pink;
+    position: absolute;
+    left: 10px;
+    top: 100px;
+}
+.playernowshow{
+    height: 40px;
+    background: white;
+    margin: auto;
+    margin-top: 5px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 40px;
+}
+.playernowshow>img{
+    height: 130px;
+    width: 110px;
+    margin: auto;
+}
+#blackplayernow{
+    width: 110px;
+    height: 180px;
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    background: green;
+}
+#whiteplayernow{
+    width: 110px;
+    height: 180px;
+    position: absolute;
+    top: 10px;
+    right: 0px;
+    background: green;
+}
+#middleplayernow{
+    width: 60px;
+    height: 180px;
+    position: absolute;
+    top: 10px;
+    left: 110px;
+    background: black;
+    color: red;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+#setjishiqi{
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    top: 320px;
+    left: 50px;
+    background: pink;
+}
+#setjishiqi>h3{
+    width: 100px;
+    height: 30px;
+    margin: auto;
+    text-align: center;
+    line-height: 20px;
+}
+#setjishiqishow{
+    width: 180px;
+    height: 40px;
+    margin: auto;
+    text-align: center;
+    line-height: 40px;
+    background: white;
+}
+#caixian{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: green;
+    left: 250px;
+    top: 220px;
+    z-index: 100;
+    line-height: 100px;
+    border-radius: 50%;
+    display: none;
+}
+#caixian>input{
+    position: absolute;
+    left: 10px;
+    top: 35px;
+    width: 80px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
+#caixian>input:hover{
+   background: green;
+   color: red;
+}
+#yesorno{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 180px;
+    left: 180px;
+    background: pink;
+    z-index: 60;
+    display: none;
+}
+.yesornolicla{
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+}

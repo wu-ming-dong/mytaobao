@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册/登录</title>
+    <link rel="stylesheet" href="playcss/register.css">
+</head>
+<body>
+    <div id="registerplayground">
+        <div id="registheadline">
+
+        </div>
+        <div id="starbox">
+            <div id="sunbox"></div>
+            <div id="moonbox"></div>
+        </div>
+        <div id="registershow">
+            <div id="registbarbox">
+               <div id="registinputbox">
+                   <li>
+                       <input type="button" value="登陆" class="libtn">
+                       <input type="button" value="注册" class="libtn">
+                   </li>
+                   <li>
+                        <div class="li1dom">登录账号:<input type="text"></div>
+                        <div class="li1dom">注册账号:<input type="text"></div>
+                   </li>
+                   <li>
+                        <div class="li2dom">密码:<input type="text"><p class="chectbtn">确认</p></div>
+                        <div class="li2dom">密码复:<input type="text"><p class="chectbtn">确认</p></div>
+                   </li>
+                   <li>
+                        <div class="li3dom"></div>
+                        <div class="li3dom">电话:<input type="text"><p class="chectbtn">确认</p></div>
+                        <div class="li3dom">邮箱:<input type="text"><p class="chectbtn">确认</p></div>
+                        <div class="li3dom">验证码:<input type="text"><p class="chectbtn">确认</p></div>
+                   </li>
+                   <li>
+                       <input type="button" value="确认" class="libtndom">
+                       <input type="button" value="取消" class="libtndom">
+                   </li>
+               </div>
+            </div>
+        </div>
+        <div id="registerbutn">
+            <input type="button" value="登录注册" id="regstartbtn">
+        </div>
+        <div id="registplantgrowbox">
+        </div>
+    </div>
+</body>
+<script>
+    //在天空挂满星星
+    let registsky =  document.getElementById("registheadline");
+    let starcolorarr = ["blue","pink","gray","white","yellow","orange"]
+    for(let i=0;i<30;i++){
+        let stardom = document.createElement("p");
+        stardom.className = "stardom";
+        stardom.style.left = 20+parseInt(i%10)*140 +Math.random()*30 +"px";
+        stardom.style.top = 20+parseInt(i/10)*80 +Math.random()*30 +"px";
+        registsky.appendChild(stardom);
+    }
+     //获取太阳 sunbox 月亮 moonbox 节点并加以动态效果
+     let sunbox =  document.getElementById("sunbox");
+     let moonbox =  document.getElementById("moonbox"); 
+     let starleftnum = 100;
+     let startopnum = 50;
+     sunbox.style.left = starleftnum*1 + "px";
+     sunbox.style.top = startopnum*1 + "px";
+     moonbox.style.left = (starleftnum + 60)*(-1) + "px";
+     moonbox.style.top = (startopnum + 60)*(-1) + "px";
+     //椭圆运动方程 x=asin@,y=bcos@;a!=b
+     //获取背景节点
+     let finstback = document.getElementById("registerplayground");
+     let seconback = document.getElementById("registershow");
+     let transnum = 0;
+     let colorarr = ["white","black"];
+     let colorcontrnum = 0;
+     let startlidom = document.getElementsByClassName("stardom");
+     setInterval(() => {
+        starleftnum = -550*Math.cos(transnum);
+        startopnum = -220*Math.sin(transnum);
+        sunbox.style.left = starleftnum*1 + "px";
+        sunbox.style.top = startopnum*1 + "px";
+        moonbox.style.left = (starleftnum+30)*(-1) + "px";
+        moonbox.style.top = (startopnum+30)*(-1) + "px";
+        transnum += 0.1;
+        // console.log(sunbox.style.top);
+        if(parseInt(sunbox.style.top)<=0){
+            colorcontrnum = 0;
+        }
+        if(parseInt(moonbox.style.top)<=0){
+            colorcontrnum = 1;
+        }
+        if(colorcontrnum==0){
+            for(let i=0;i<startlidom.length;i++){
+                startlidom[i].style.background = "white";
+            }
+        }else{
+            for(let i=0;i<startlidom.length;i++){
+                startlidom[i].style.background = starcolorarr[parseInt(Math.random()*startlidom.length)];
+                startlidom[i].style.left = 20+parseInt(i%10)*140 +Math.random()*30 +"px";
+                startlidom[i].style.top = 20+parseInt(i/10)*80 +Math.random()*30 +"px";
+            }
+        }
+        finstback.style.background = colorarr[colorcontrnum];
+        seconback.style.background = colorarr[colorcontrnum];
+     }, 1000);
+     //登录注册
+     let regstartbtn = document.getElementById("regstartbtn");
+     let grantnum = 0;
+     regstartbtn.onclick = function(){
+        grantnum=1;
+        document.getElementById("registbarbox").style.display = "block";
+     }
+     //登录注册布局结构
+      let registlidom = document.getElementById("registinputbox").children;
+      for(let i=0;i<registlidom.length;i++){
+        registlidom[i].style.top = 16+i*40+"px";
+        registlidom[i].style.left = 16+"px";
+      }
+      let libtn = document.getElementsByClassName("libtn");//登录注册节点
+      let libtndom = document.getElementsByClassName("libtndom");//登录注册节点
+      let li1dom = document.getElementsByClassName("li1dom");//登录注册账号节点
+      let li2dom = document.getElementsByClassName("li2dom");//登录注册密码节点
+      let li3dom = document.getElementsByClassName("li3dom");//登录注册联系方式节点
+      let chectbtn = document.getElementsByClassName("chectbtn");
+      for(let i=0;i<li1dom.length;i++){
+         li1dom[i].style.left = i*282+"px";
+      }
+      for(let i=0;i<li2dom.length;i++){
+         li2dom[i].style.left = i*282+"px";
+      }
+      for(let i=0;i<li3dom.length;i++){
+         li3dom[i].style.left = i*282+"px";
+      }
+      //登录注册选择特效
+      let firststationnum = 0;//初始跳转
+      let inputcontrolflowernum = 0;
+      libtn[0].style.background = "green";
+      libtn[0].style.color = "red";
+      for(let i=0;i<2;i++){
+         libtn[i].onmouseenter = function(){
+            if(i==0){
+                firststationnum = 0;
+            }else{
+                firststationnum = 1;
+            }
+            for(let j=0;j<2;j++){
+                if(i==j){
+                    libtn[j].style.background = "green";
+                    libtn[j].style.color = "red";
+                }else{
+                    libtn[j].style.background = "gray";
+                    libtn[j].style.color = "black";
+                }
+            }
+            registlidom[1].style.left = 16-282*i +"px";
+            registlidom[3].style.left = 16-282*i +"px";
+         } 
+      }
+      //chectbtn点击效果
+      for(let i=0;i<chectbtn.length;i++){
+          chectbtn[i].onclick = function(){
+            if(i!=1&&i!=4){
+                chectbtn[i].parentNode.parentNode.style.left = parseFloat(chectbtn[i].parentNode.parentNode.style.left)-282+"px";
+            }else{
+                if(i==1){
+                    chectbtn[i].parentNode.parentNode.style.left = 16+"px";
+                }else{
+                    chectbtn[i].parentNode.parentNode.style.left = 16-firststationnum*282+"px";
+                }
+            }
+          }
+      }
+      //确认取消特效
+        libtndom[0].onclick = function(){
+            inputcontrolflowernum = 1;
+            setTimeout(() => {
+                location.href = "index.html";
+            }, 5000);
+        }
+        libtndom[1].onclick = function(){
+            inputcontrolflowernum = 0;
+            for(let i=0;i<li1dom.length;i++){
+               li1dom[i].children[0].value = "";
+            }
+            for(let i=0;i<li2dom.length;i++){
+              li2dom[i].children[0].value = "";
+            }
+            for(let i=0;i<li3dom.length;i++){
+               li3dom[i].children[0].value = "";
+            }
+        }
+     //登录注册特效
+     //获取第一个藤蔓拐点节点
+     let registbox = document.getElementById("registplantgrowbox");
+     //定义一个子变量
+     let childbox = 0;
+     let fathebox = 0;
+     //定义一个数组存储子变量的ID
+     let boxdomidarr = [];
+     let boxnum = 0;
+     let flowercontrolnum =0;
+     let flowerbox = 0;
+     //定义一个数组存储登录框的id
+     let registarr = ["box1","box2","box3","box4","box5"];
+     let boxleavdom = 0;
+     let boxleavnum = 0;
+     let leavedom =0;
+     let treeleav = 0;
+     //定义花朵颜色随机控制数
+     let leavecolorarr = ["pink","purple","orange","red","blue"];
+     let flowernum = 0;
+     setInterval(() => {
+         if(boxnum<=22&&grantnum==1){
+            if(fathebox==0){
+                childbox = document.createElement("li");
+                childbox.id = "boxdom"+boxnum;
+                childbox.style.left = "10px";
+                registbox.appendChild(childbox);
+                fathebox = 1;
+            }else{
+                fathebox = document.getElementById(boxdomidarr[boxdomidarr.length-1]);
+                if(boxnum==1){
+                    fathebox.style.top = "15px";
+                }
+                childbox = document.createElement("li");
+                childbox.id = "boxdom"+boxnum;
+                childbox.style.left = parseInt(fathebox.style.width)-8+"px";
+                fathebox.appendChild(childbox);
+            }
+            if(boxnum>5){
+                childbox.style.top = "-4px";
+                childbox.style.transform = "rotate(-8deg)";
+            }
+            if(boxnum>11){
+                childbox.style.top = "2px";
+                childbox.style.transform = "rotate(6deg)";
+            }
+            if(boxnum>5){
+                childbox.style.borderRadius = "0 10px 0 10px";
+            }
+            //创建登录框box/嫁接树叶
+            if(boxnum==5){
+                flowernum = leavecolorarr[parseInt(Math.random()*leavecolorarr.length)];
+                boxleavdom = document.createElement("div");
+                for(let i=0;i<5;i++){
+                    treeleav = document.createElement("div");
+                    treeleav.className = "treeleavdom";
+                    treeleav.style.background = flowernum;
+                    treeleav.style.top = "-12px";
+                    boxleavdom.appendChild(treeleav);
+                }
+                boxleavdom.id = registarr[boxleavnum];
+                boxleavdom.style.cssText = `
+                   position:absolute;
+                   background:green;
+                `;
+                boxleavdom.style.transformOrigin = "2.5PX 0PX";
+                boxleavdom.style.transform = "rotateZ(-40deg)";
+                boxleavdom.style.width = "30px";
+                boxleavdom.style.height = "5px";
+                boxleavdom.style.top = "0px";
+                boxleavdom.style.left = parseInt(fathebox.style.width)+"px";
+                childbox.appendChild(boxleavdom);
+                boxleavnum++;
+            }
+            if(boxnum==11){
+                flowernum = leavecolorarr[parseInt(Math.random()*leavecolorarr.length)];
+                boxleavdom = document.createElement("div");
+                for(let i=0;i<5;i++){
+                    treeleav = document.createElement("div");
+                    treeleav.className = "treeleavdom";
+                    treeleav.style.background = flowernum;
+                    treeleav.style.top = "-12px";
+                    boxleavdom.appendChild(treeleav);
+                }
+                boxleavdom.id = registarr[boxleavnum];
+                boxleavdom.style.cssText = `
+                   position:absolute;
+                   background:green;
+                `;
+                boxleavdom.style.transformOrigin = "2.5PX 0PX";
+                boxleavdom.style.transform = "rotateZ(40deg)";
+                boxleavdom.style.width = "30px";
+                boxleavdom.style.height = "5px";
+                boxleavdom.style.bottom = "0px";
+                boxleavdom.style.left = parseInt(fathebox.style.width)+"px";
+                childbox.appendChild(boxleavdom);
+                boxleavnum++;
+            }
+            if(boxnum==14){
+                flowernum = leavecolorarr[parseInt(Math.random()*leavecolorarr.length)];
+                boxleavdom = document.createElement("div");
+                for(let i=0;i<5;i++){
+                    treeleav = document.createElement("div");
+                    treeleav.className = "treeleavdom";
+                    treeleav.style.background = flowernum;
+                    treeleav.style.top = "-12px";
+                    boxleavdom.appendChild(treeleav);
+                }
+                boxleavdom.id = registarr[boxleavnum];
+                boxleavdom.style.cssText = `
+                   position:absolute;
+                   background:green;
+                `;
+                boxleavdom.style.transformOrigin = "2.5PX 0PX";
+                boxleavdom.style.transform = "rotateZ(-40deg)";
+                boxleavdom.style.width = "30px";
+                boxleavdom.style.height = "5px";
+                boxleavdom.style.top = "0px";
+                boxleavdom.style.left = parseInt(fathebox.style.width)+"px";
+                childbox.appendChild(boxleavdom);
+                boxleavnum++;
+            }
+            if(boxnum==16){
+                flowernum = leavecolorarr[parseInt(Math.random()*leavecolorarr.length)];
+                boxleavdom = document.createElement("div");
+                for(let i=0;i<5;i++){
+                    treeleav = document.createElement("div");
+                    treeleav.className = "treeleavdom";
+                    treeleav.style.background = flowernum;
+                    treeleav.style.top = "-12px";
+                    boxleavdom.appendChild(treeleav);
+                }
+                boxleavdom.id = registarr[boxleavnum];
+                boxleavdom.style.cssText = `
+                   position:absolute;
+                   background:green;
+                `;
+                boxleavdom.style.transformOrigin = "2.5PX 0PX";
+                boxleavdom.style.transform = "rotateZ(40deg)";
+                boxleavdom.style.width = "30px";
+                boxleavdom.style.height = "5px";
+                boxleavdom.style.bottom = "0px";
+                boxleavdom.style.left = parseInt(fathebox.style.width)+"px";
+                childbox.appendChild(boxleavdom);
+                boxleavnum++;
+            }
+            if(boxnum==19){
+                flowernum = leavecolorarr[parseInt(Math.random()*leavecolorarr.length)];
+                boxleavdom = document.createElement("div");
+                for(let i=0;i<5;i++){
+                    treeleav = document.createElement("div");
+                    treeleav.className = "treeleavdom";
+                    treeleav.style.background = flowernum;
+                    treeleav.style.top = "-12px";
+                    boxleavdom.appendChild(treeleav);
+                }
+                boxleavdom.id = registarr[boxleavnum];
+                boxleavdom.style.cssText = `
+                   position:absolute;
+                   background:green;
+                `;
+                boxleavdom.style.transformOrigin = "2.5PX 0PX";
+                boxleavdom.style.transform = "rotateZ(-40deg)";
+                boxleavdom.style.width = "30px";
+                boxleavdom.style.height = "5px";
+                boxleavdom.style.top = "0px";
+                boxleavdom.style.left = parseInt(fathebox.style.width)+"px";
+                childbox.appendChild(boxleavdom);
+                boxleavnum++;
+            }
+            // console.log(boxdomidarr)
+            childbox.style.transition = "all 0.1s linear";
+            childbox.style.position = "absolute";
+            childbox.style.background = "green";
+            childbox.style.width = 5+boxnum*4+"px";
+            childbox.style.height = 10+boxnum*(-0.4)+"px";
+            childbox.style.top = "0.2px";
+            boxdomidarr.push("boxdom"+boxnum);
+            boxnum++;
+         }
+         //当枝干生长完成时开始长花骨朵
+         if(boxnum==23){
+             flowerbox = document.createElement("div");
+             flowerbox.id = "flowerdoms";
+             fathebox = document.getElementById(boxdomidarr[boxdomidarr.length-1]);
+             flowerbox.style.cssText = `
+               position:absolute;
+               right:-4px;
+               background:yellow;
+               border-radius:50%;
+               transition:all 1s linear;
+              `; 
+              flowerbox.style.width = "5px";
+              flowerbox.style.height = "5px";
+              flowerbox.style.top = "0px";
+             fathebox.appendChild(flowerbox);
+             let huabandom = 0;
+             for(let j=0;j<9;j++){
+                huabandom = document.createElement("li");
+                huabandom.style.cssText = `
+                  position:absolute;
+                  transition:all 1s linear;
+                  border-radius:50%;
+                  left:4px;
+                `;
+                huabandom.style.background = starcolorarr[j];
+                huabandom.style.width = "10px";
+                huabandom.style.height = "5px";
+                flowerbox.appendChild(huabandom);
+             }
+             boxnum++;
+         }
+     }, 100);
+     //枝干生长
+     let plantboxdom = 0;
+     let plantdom = 0;
+     let plantboxnum = 0;
+     setInterval(() => {
+         if(plantboxnum<30&&grantnum==1){
+            for(let i=0;i<boxdomidarr.length;i++){
+                plantboxdom = document.getElementById(boxdomidarr[i]);
+                if(i==0){
+                    plantboxdom.style.top = (40-parseInt(plantboxdom.style.height))/2 + "px";
+                }
+                plantboxdom.style.height = parseInt(plantboxdom.style.height)+1+"px";
+            }
+            plantboxnum++;
+         }
+         if(boxnum==24&&plantboxnum>=24){
+            flowerbox.style.width = 5+(plantboxnum-23)*1 +"px";
+            flowerbox.style.height = 5+(plantboxnum-23)*1 +"px";
+            plantdom = flowerbox.children;
+            for(let i=0;i<plantdom.length;i++){
+                plantdom[i].style.top = 2-1*(plantboxnum-23)+"px";
+                plantdom[i].style.left = 3+(plantboxnum-23)*1 +"px";
+                plantdom[i].style.width = 10+(plantboxnum-23)*10 +"px";
+                plantdom[i].style.height = 5+(plantboxnum-23)*2 +"px";
+                plantdom[i].style.transformOrigin = "0px 9px";
+            }
+         }
+     }, 100);
+     //花朵开花
+     let treeleavdom = document.getElementsByClassName("treeleavdom");
+     setInterval(() => {
+         plantdom = flowerbox.children;
+         if(plantboxnum==30&&inputcontrolflowernum==1){
+            for(let i=0;i<plantdom.length;i++){
+                plantdom[i].style.transform = "rotateZ("+(i-2)*20+'deg'+")";
+            }
+            for(let i=0;i<treeleavdom.length;i++){
+                treeleavdom[i].style.transform = "rotateZ("+(2-i%5)*16+'deg'+")";
+            }
+         }else{
+            for(let i=0;i<plantdom.length;i++){
+                plantdom[i].style.transform = "rotateZ(0deg)";
+            }
+            for(let i=0;i<treeleavdom.length;i++){
+                treeleavdom[i].style.transform = "rotateZ(0deg)";
+            }
+         }
+     }, 1000);
+</script>
+</html>
