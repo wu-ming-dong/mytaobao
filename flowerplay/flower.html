@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    ul,li{
+        list-style: none;
+    }
+    #box{
+        width: 500px;
+        height: 490px;
+        padding-top: 10px;
+        margin: auto;
+        background: pink; 
+    }
+    </style>
+</head>
+<body>
+    <div id="box">
+        
+    </div>
+</body>
+<script src="huaduo.js"></script>
+<script>
+    //荷花、荷叶、莲藕
+        let box = document.getElementById("box");
+        let huamain = document.createElement("ul");
+        huamain.style.cssText = `
+            position:relative;
+            width: 200px;
+            height: 480px;
+            margin: auto;
+            background: white;
+        `;
+        box.appendChild(huamain);
+        //荷花
+        let zhigan = document.createElement("li");
+        zhigan.style.cssText = `
+            position:absolute;
+            bottom:10px;
+            left:96px;
+            width: 6px;
+            height: 300px;
+            border-radius: 5px 5px 0 0;
+            background: green;
+        `;
+        let huabao = document.createElement("li");
+        huabao.style.cssText = `
+            position:absolute;
+            bottom:300px;
+            left:50px;
+            width: 100px;
+            height: 100px;
+        `;
+        huamain.appendChild(huabao);
+        huamain.appendChild(zhigan);
+        let huabaobox = document.createElement("div");
+        huabaobox.style.cssText = `
+            position:relative;
+            width: 100px;
+            height: 100px;
+            margin: auto;
+            background: transparent;
+        `;
+        huabao.appendChild(huabaobox);
+        for(let i=0;i<9;i++){
+            let huaban = document.createElement("li");
+            let leaves = document.createElement("li");
+            huaban.className = "huanbanlistdoms"
+            leaves.className = "leaveslistdoms"
+            huaban.index = i-4+"";
+            leaves.index = i-4+"";
+            huaban.style.cssText =`
+                position:absolute;
+                left:39px;
+                bottom:0px;
+                width:20px;
+                height:90px;
+                border-radius:50%;
+                transform-origin:10px 90px;
+                background: pink;
+                z-index:5;
+                opacity:1;
+            `;
+            leaves.style.cssText = `
+               position:absolute;
+               left:39px;
+               bottom:-4px;
+               width:20px;
+               height:40px;
+               border-radius:50%;
+               transform-origin:10px 40px;
+               background: green;
+               z-index:10;
+               opacity:0.6;
+            `;
+            huabaobox.appendChild(huaban);
+            huabaobox.appendChild(leaves);
+        }
+        let huabandoms = document.getElementsByClassName("huanbanlistdoms");
+        let leavesdoms = document.getElementsByClassName("leaveslistdoms");
+        let isOpen = true;
+        let randomtime = 10000;
+        let tiaojian = false;
+        setInterval(() => {
+            if (isOpen==tiaojian){
+                isOpen = !tiaojian
+            }
+            if(isOpen==true){
+                for(let i=0;i<huabandoms.length;i++){
+                    // console.log(huabandoms[i].index*22.5+"deg");
+                    huabandoms[i].style.transform = "rotateZ("+huabandoms[i].index*23+'deg'+")";
+                    huabandoms[i].style.opacity = "0.6";
+                    huabandoms[i].style.transition = "all 3s linear";
+                    leavesdoms[i].style.transform = "rotateZ("+leavesdoms[i].index*25+'deg'+")";
+                    leavesdoms[i].style.opacity = "0.8";
+                    leavesdoms[i].style.transition = "all 2.8s linear";
+
+                }
+            }else{
+                for(let i=0;i<huabandoms.length;i++){
+                    // console.log(huabandoms[i].index*22.5+"deg");
+                    huabandoms[i].style.transform = "rotateZ(0deg)";
+                    huabandoms[i].style.opacity = "1";
+                    huabandoms[i].style.transition = "all 3s linear";
+                    leavesdoms[i].style.transform = "rotateZ(0deg)";
+                    leavesdoms[i].style.opacity = "0.6";
+                    leavesdoms[i].style.transition = "all 2.8s linear";
+                }
+            }
+            // console.log(randomtime);
+        tiaojian = isOpen; 
+        }, randomtime);
+        //荷叶
+        let heyezhigan1 = document.createElement("li");
+        let heyezhigan2 = document.createElement("li");
+        heyezhigan1.style.cssText = `
+           position:absolute;
+           bottom:10px;
+           left:90px;
+           width:6px;
+           height:100px;
+           background:green;
+           transform-origin:3px 100px;
+           transform:rotateZ(-3deg);
+        `;
+        heyezhigan2.style.cssText = `
+           position:absolute;
+           bottom:100px;
+           left:0px;
+           width:6px;
+           height:99px;
+           background:green;
+           transform-origin:3px 100px;
+           transform:rotateZ(-3deg);
+        `;
+        huamain.appendChild(heyezhigan1);
+        heyezhigan1.appendChild(heyezhigan2);
+        let heyeyemian = document.createElement("li");
+        heyeyemian.style.cssText = `
+           position:absolute;
+           top:-15px;
+           left:-68px;
+           width:150px;
+           height:20px;
+           border-radius:50%;
+           background:green;
+           transform-origin:3px 100px;
+           transform:rotateZ(-3deg);
+           opacity:0.8;
+        `;
+        heyezhigan2.appendChild(heyeyemian);
+        let luzhu = document.createElement("div");
+        luzhu.style.cssText = `
+           position:absolute;
+           left:68px;
+           top:5px;
+           width:14px;
+           height:10px;
+           border-radius:50%;
+           background:gray;
+           transform-origin:3px 100px;
+           opacity:0.8;
+        `;
+        heyeyemian.appendChild(luzhu);
+        let m = 0 ,n = 0;
+        let m1 =0 ,n2 = 0;
+        let mnp = 0 ,mnp1 = 0;
+        setInterval(() => {
+            mnp = Math.random()*2;
+            mnp1 = Math.random()*2;
+            if(mnp<1){
+                mnp = -1;  
+            }else{
+                mnp = 1;
+            };
+            m = mnp*Math.random()*10;
+            n = m*0.2;
+            heyezhigan1.style.transition = "all 1.1s linear";
+            heyezhigan2.style.transition = "all 1.1s linear";
+            heyeyemian.style.transition = "all 1.1s linear";
+            luzhu.style.transition = "all 1.1s linear";
+            heyezhigan1.style.transform = "rotateZ("+m+'deg'+")";
+            heyezhigan2.style.transform = "rotateZ("+n+'deg'+")";
+            m1 = mnp*Math.random()*40+2;
+            if(mnp1<1){
+                mnp1 = -1;  
+            }else{
+                mnp1 = 1;
+            };
+            n1 = mnp1*Math.random()*5;
+            luzhu.style.left = 68 + m1 + "px";
+            luzhu.style.top = 5 + n1 + "px";
+
+        }, 1000);
+        //莲藕
+        let lianoubox = document.createElement("div");
+        lianoubox.style.cssText = `
+            position:absolute;
+            left:60px;
+            bottom:-5px;
+            width:150px;
+            height:40px;
+        `;
+        huamain.appendChild(lianoubox);
+        let oujiew = 30;
+        let oujieh = 30;
+        let oujiepositionw = 0;
+        let oujiepositionh;
+        for(let i=0;i<5;i++){
+            oujiepositionh = 25;
+           if(i%2==0){
+              oujiepositionh = (oujieh-oujiepositionh);
+           }else{
+              oujiepositionh = (4-oujiepositionh/4);
+           }
+           let oujie = document.createElement("li");
+               oujie.style.position = "absolute";
+           if(i%2==0){
+             oujie.style.width = oujiew + "px";
+             oujie.style.height = oujieh + "px";
+             oujie.style.left = oujiepositionw + "px";
+             oujiepositionw += oujiew;
+             oujie.style.top =  oujiepositionh+ "px";
+             oujie.style.background = "gray";
+             oujie.style.borderRadius = "10px 10px";
+           }else{
+             oujie.style.width = 10 + "px";
+             oujie.style.height = 14 + "px";
+             oujie.style.left = oujiepositionw + "px";
+             oujiepositionw += 10;
+             oujie.style.top = 14+ "px";
+             oujie.style.background = "black";
+             oujie.style.borderRadius = "50%";
+           }
+           lianoubox.appendChild(oujie);
+           oujiew += 5;
+           oujieh -= 1;
+        }
+        //小飞虫-蜻蜓
+        let anlmaldoms = document.createElement("li");
+        anlmaldoms.className = "anlmaldoms";
+        anlmaldoms.style.cssText = `
+             width:30px;
+             height:30px;
+             position:absolute;
+             top:30px;
+        `;
+        huamain.appendChild(anlmaldoms);
+        let animalbox = document.createElement("div");
+        animalbox.style.cssText = `
+             width:30px;
+             height:30px;
+             position:absolute;
+        `;
+        anlmaldoms.appendChild(animalbox);
+        let animalhead = document.createElement("li");
+        let animalbody = document.createElement("li");
+        let animalfoot = document.createElement("li");
+        animalhead.style.cssText = `
+            position:absolute;
+            width:10px;
+            height:10px;
+            border-radius:50%;
+            background:gray;
+        `;
+        for(let i=0;i<2;i++){
+            let eyes = document.createElement("p");
+            eyes.style.cssText = `
+                position:absolute;
+                left:-2px;
+                width:4px;
+                height:4px;
+                border-radius:50%;
+                background:purple;
+            `;
+            eyes.style.top = i*6+"px";
+            animalhead.appendChild(eyes);
+        }
+        animalbody.style.cssText = `
+            position:absolute;
+            left:8px;
+            width:20px;
+            height:10px;
+            border-radius:40%;
+            background:green;
+            transform-style:preserve-3d;
+        `;
+        for(let i=0;i<5;i++){
+            let flys = document.createElement("p");
+            flys.className ="flysdoms";
+            flys.index = "30";
+            if(i==2){
+                flys.style.cssText = `
+                    position:absolute;
+                    left:8px;
+                    width:30px;
+                    height:10px;
+                    transform-origin:-5px 5px;
+                    border-radius:40%;
+                    background:transparent;
+                    opacity:0.5;
+                    z-index:10;
+                `;
+            }else{
+                flys.style.cssText = `
+                    position:absolute;
+                    left:8px;
+                    width:30px;
+                    height:10px;
+                    transform-origin:-5px 5px;
+                    border-radius:40%;
+                    background:purple;
+                    opacity:0.5;
+                    z-index:10;
+                `;
+            }
+            flys.style.transform = "rotateZ("+(i-2)*56+'deg'+")";
+            animalbody.appendChild(flys); 
+        }
+        animalfoot.style.cssText = `
+            position:absolute;
+            left:26px;
+            top:1px;
+            width:30px;
+            height:6px;
+            border-radius:0px 3px 3px 0px;
+            background:gray;
+            opacity:0.8
+        `;
+        animalbox.appendChild(animalhead);
+        animalbox.appendChild(animalbody);
+        animalbox.appendChild(animalfoot);
+        let flysdom = document.getElementsByClassName("flysdoms");
+        let animaldoms = document.getElementsByClassName("anlmaldoms");
+        let j = 0,jp = 0;
+        let k = 0;
+        setInterval(() => {
+            j = -1*parseInt(flysdom[2].index);
+            jp = j*8 + 40;
+            for(let i=0;i<animaldoms.length;i++){
+                animaldoms[i].style.left = jp+"px";
+                animaldoms[i].style.transform = "rotateZ("+k+'deg'+")";
+                animaldoms[i].style.transition = "left 2s linear";
+                // console.log(k);
+            }
+            for(let i=0;i<flysdom.length;i++){
+                flysdom[i].style.transform = "rotateZ("+(i-2)*56+'deg'+")rotateY("+j+'deg'+")";
+                flysdom[i].style.transition = "all 1s linear";
+            }
+            flysdom[2].index = j;
+            if(k==180){
+                k = 0;
+            }else{
+                k = 180;
+            }
+            // console.log(j);
+        }, 2000);
+        //水池,蝌蚪
+        let shuichi = document.createElement("div");
+        shuichi.style.cssText = `
+            position:absolute;
+            bottom:0px;
+            left:0px;
+            width:200px;
+            height:100px;
+        `; 
+        huamain.appendChild(shuichi);
+        for(let i=0;i<40;i++){
+            let bolan = document.createElement("li");
+            bolan.className = "bolandoms"
+            bolan.style.position = "absolute";
+            bolan.style.bottom = "0px";
+            bolan.style.left = i*5+ "px";
+            bolan.style.width = "5px";
+            bolan.style.height = "100px";
+            bolan.style.background = "pink";
+            bolan.style.opacity = "0.4";
+            bolan.style.reansition = "height 0.5s linear";
+            shuichi.appendChild(bolan);
+        }
+        let bolandoms = document.getElementsByClassName("bolandoms");
+        let lanhuapoint = 0;
+        let lanhuap = 0;
+        setInterval(() => {
+            if(lanhuapoint<=0){
+                lanhuap =0;
+            }
+            if(lanhuapoint>=49){
+                lanhuap =1;
+            }
+            if(lanhuap==0){
+                lanhuapoint +=1;
+            }else{
+                lanhuapoint -=1;
+            }
+            if(lanhuapoint%2==0){
+                for(let i=0;i<40;i++){
+                    if(i%2==0){
+                        bolandoms[i].style.height = "101px";
+                    }else{
+                        bolandoms[i].style.height = "99px";
+                    }
+                }
+            }else{
+                for(let i=0;i<40;i++){
+                    if(i%2==1){
+                        bolandoms[i].style.height = "101px";
+                    }else{
+                        bolandoms[i].style.height = "99px";
+                    }
+                }
+            }
+        }, 500);
+        //蝌蚪
+        let kedoubox = document.createElement("div");
+        kedoubox.style.cssText = `
+          position:absolute;
+          bottom:50px;
+          left:0px;
+          width:20px;
+          height:12px;
+          transition:all 1s linear;
+        `;
+        shuichi.appendChild(kedoubox);
+        for(let i=0;i<4;i++){
+            let kedou = document.createElement("li");
+            kedou.className = "kedoudoms";
+            kedou.style.background = "black";
+            kedou.style.position = "absolute";
+            kedou.style.borderRadius = "50%";
+            kedou.style.transition = "all 0.5s linear";
+            kedoubox.appendChild(kedou);
+        }
+        let kedoudoms = document.getElementsByClassName("kedoudoms");
+        for(let i=0;i<kedoudoms.length;i++){
+            if(i==0){
+                kedoudoms[i].style.width = "15px";
+                kedoudoms[i].style.height = "10px";
+                kedoudoms[i].style.left = "0px";
+            }else{
+                kedoudoms[i].style.width = 6-i+"px";
+                kedoudoms[i].style.height = 6-i+"px";
+                kedoudoms[i].style.left = 15+(i-1)*(6-i)+"px";
+                kedoudoms[i].style.top = (10-6+i)/2+"px";
+                kedoudoms[i].style.transformOrigin = 0+"px"+" "+(6-i)/2+"px";
+            }
+
+        }
+        let kedouplayp = 1;
+        let kedouplayarr = [10,50,70,90];
+        let kedouplayarrevery = 0;
+        setInterval(() => {
+            kedouplayp *= -1;
+            for(let i=0;i<kedoudoms.length;i++){
+                kedouplayarrevery = kedouplayarr[i]*kedouplayp;
+                kedoudoms[i].style.transform = "rotateZ("+kedouplayarrevery+'deg'+")";
+            }
+        }, 500);
+        let kedouplayk = 0;
+        let kedouborder = 0;
+        let kedounum = 0;
+        setInterval(() => {
+            kedouborder = parseInt(kedoubox.style.left);
+            if(kedouborder<=0){
+                kedouplayk = 1; 
+            };
+            if(kedouborder>=190){
+                kedouplayk = -1;
+            }
+            if(kedouplayk==1){
+                kedoubox.style.transform = "rotateZ("+180+'deg'+")";
+                kedounum +=10;
+            }else{
+                kedoubox.style.transform = "rotateZ("+0+'deg'+")";
+                kedounum -= 10;
+            }
+            kedoubox.style.left = kedounum+"px";
+        }, 1000);
+</script>
+</html>
