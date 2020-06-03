@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品列表</title>
+    <link rel="stylesheet" href="projectcss/index.css">
+    <link rel="stylesheet" href="projectcss/indexnav.css">
+    <link rel="stylesheet" href="projectcss/indexlittlpic.css">
+    <link rel="stylesheet" href="projectcss/indexselect.css">
+    <link rel="stylesheet" href="projectcss/indexlit.css">
+    <link rel="stylesheet" href="projectcss/goodlist.css">
+    <style>
+     *{
+         margin: 0px;
+         padding: 0px;
+     }
+     a{
+         text-decoration: none;
+     }
+     img{
+         vertical-align: top;
+     }
+     ul,li{
+         list-style: none;
+     }
+    </style>
+</head>
+<body>
+    <div id="indexbox">
+        <div id="indexhidden">
+            <div>
+                <p><a href="">单笔订单满99包邮(健身大器材、乒乓球桌、自行车除外) ></a><span>×</span></p>
+            </div>
+        </div>
+        <div id="indexheader">
+             <div id="headline">
+                 <div class="headlineclass1 turnleft"> 
+                     <p class="headlinepdom"><span class="iconfont">&#xe680</span>分类</p>
+                 </div>
+                 <div class="headlineclass2">
+                     <img src="imgs/indeximgs/a5ph2j8869851178619.png" alt="">
+                 </div>
+                 <div class="sousuobox">
+                       <input id="sousuoboxinput" type="text" value="输入商品或商品号">
+                       <p id="sousuoboxbtn" class="turnleft"><span class="iconfont">&#xe501</span></p>
+                 </div>
+                 <div class="selectbox">
+                       <ul >
+                           <li class="turnleft">
+                               <a href=""><div><span class="iconfont">&#xe70f</span>帮助</div></a>
+                           </li>
+                           <li class="turnleft">
+                               <a href=""><div><span class="iconfont">&#xe61c</span>门店</div></a>
+                           </li>
+                           <li class="turnleft">
+                               <a href="logon.html"><div><span class="iconfont">&#xe626</span>会员</div></a>
+                            </li>
+                           <li class="turnleft">
+                                <a href=""><div><span class="iconfont">&#xe507</span>购物车</div></a>
+                           </li>
+                       </ul>
+                 </div>
+             </div>
+             <div id="selectshowbox">
+                    <div class="selectdomclass">
+                        <div>
+                            <div class="selectpoint"></div>
+                            <p>需要帮助 <span class="iconfont">&#xe7fc</span></p>
+                        </div>
+                        <ul>
+                            <li><span class="iconfont">&#xe666</span><p>查看常见<a href="">问题</a></p></li>
+                            <li><span class="iconfont">&#xe626</span><p>联系我们：4009-109-109<br>9:00~18:00/周一至周日<br>(包括公众假期)</p></li>
+                            <li><span class="iconfont">&#xe6a0</span><p>给我们发送<a href="">邮件</a></p></li>
+                            <li><span class="iconfont">&#xe61c</span><p>联系您的门店<a href="">寻找您附近的门店</a></p></li>
+                        </ul>
+                    </div>
+                    <div class="selectdomclass">
+                        <div>
+                            <div class="selectpoint"></div>
+                            <p>NEW!选择您的门店</p>
+                        </div>
+                        <ul>
+                            <p class="textclass">选择您常去的门店，查看门店库存</p>
+                            <p class="butnclass">选择您常去的门店</p>
+                        </ul>
+                    </div>
+                    <div class="selectdomclass">
+                        <div>
+                            <div class="selectpoint"></div>
+                            <p>欢迎回来</p>
+                        </div>
+                        <ul>
+                            <li>账户</li>
+                            <li>我的会员福利</li>
+                            <li>购买记录</li>
+                            <li>不是本人？</li>
+                            <li><a href=""><span class="iconfont">&#xe666</span> 退出登录</a></li>
+                        </ul>
+                    </div>
+                    <div class="selectdomclass">
+                        <div>
+                            <div class="selectpoint"></div>
+                            <p>购物车</p>
+                        </div>
+                        <ul>
+                            <li class="goodsstart">您的购物车是空的<br>请购物!</li>
+                        </ul>
+                    </div>
+             </div>
+        </div>
+        <div id="navbox">
+            <div id="navboxdivdom">
+                <div id="navpointbox">
+                      <ul>
+                          <li class="liturnablack"><a href="">所有运动</a></li>
+                          <li class="liturnablack"><a href="">运动服饰</a></li>
+                          <li class="liturnablack"><a href="">运动鞋袜</a></li>
+                          <li class="liturnablack"><a href="">运动装备</a></li>
+                          <hr>
+                          <li class="liturnared"><a href="" >特惠专区</a></li>
+                          <li class="liturnablack"><a href="">保养维修</a></li>
+                          <li class="liturnablack"><a href="">个性定制</a></li>
+                      </ul>
+                </div>
+                <div id="navshowbox">
+                      <ul>
+                            <!-- <li class="liclass1">
+                                <a href=""><img src="imgs/indeximgs/menuThumbnail_fitness.png" alt=""></a>
+                                <p>健身</p>
+                            </li> -->
+                            <!-- <li class="liclass2">
+                                <h3>户外运动</h3>
+                                <p><a href="">一日徒步装备</a></p>
+                                <p><a href="">一日徒步装备</a></p>
+                                <p><a href="">一日徒步装备</a></p>
+                                <p><a href="">一日徒步装备</a></p>
+                                <p><a href="">一日徒步装备</a></p>
+                                <p><a href="">一日徒步装备</a></p>
+                                <p><a href="">一日徒步装备</a></p>
+                            </li> -->
+                      </ul>
+                </div>
+            </div>
+        </div>
+        <div id="indexboday">
+                <div class="navdaohanglie">
+                    <p>首页<span class="iconfont">&#xe509</span></p>
+                    <p>春季上新<span class="iconfont">&#xe509</span></p>
+                    <p>一日徒步<span class="iconfont">&#xe509</span></p>
+                </div>
+                <div class="goodslistbox">
+                      <div id="goodlistnav">
+
+                      </div>
+                      <div id="goodlistshowbox">
+                             <ul class="goodelistshopuldom">
+                                  <li class="imgboxnavclass">
+                                      <img src="imgs/indeximgs/block_login-bg--lg.jpg" alt="">
+                                      <div class="goodelistshopuldomtext turnleft">
+                                          <h3>一日徒步</h3>
+                                          <p>徒步作为一个及体育和休闲为一体的运动，指在森林、海边、丛林、山地 <br> 或郊区进行的户外活动</p>
+                                          <div>
+                                              <a href=""><p>进入运动<span class="iconfont">&#xe509</span></p></a>
+                                          </div>
+                                        </div>
+                                    </li>
+                                  <li class="goodlistshopheadliebox">
+                                      <p class="goodlistshoppoint">综合</p>
+                                      <p class="goodlistshoppoint">新品</p>
+                                      <p class="goodlistshoppoint">评价</p>
+                                      <p class="goodlistshoppoint">折扣</p>
+                                      <p class="goodlistshoppoint">价格</p>
+                                      <p class="goodlistshoppoint">共62件商品</p>
+                                      <p class="goodlistshoppoint"><span></span>定位门店，精准看库存</p>
+                                  </li>
+                                  <li></li>
+                             </ul>
+                             <div>
+                                 <ul class="goodsputinbox">
+
+                                 </ul>
+                                 <ul class="goodsputinbtn">
+
+                                 </ul>
+                             </div>
+                      </div>
+                      <div class="goodlistfoot"></div>
+                </div>
+        </div>
+        <div id="indexfooter">
+             <div class="indexfoothead">
+                 <ul class="footheadline">
+                     <li>
+                         <span class="iconfont">&#xe629</span>
+                         <span>用户评价</span>
+                     </li>
+                     <li>
+                        <span class="iconfont">&#xe605</span>
+                        <span>门店自提</span>
+                    </li>
+                    <li>
+                        <span class="iconfont">&#xe639</span>
+                        <span>会员福利</span>
+                    </li>
+                    <li>
+                        <span class="iconfont">&#xe612</span>
+                        <span>工作室</span>
+                    </li>
+                    <li>
+                        <span class="iconfont">&#xe66b</span>
+                        <span>退换货保障</span>
+                    </li>
+                 </ul>
+             </div>
+             <div class="indexfootbody">
+                 <div class="indexfootbox">
+                     <ul>
+                         <li class="indexfootlidom">
+                             <h3>关于迪卡侬</h3>
+                             <p class="foottitle"><a href="">品牌故事</a></p>
+                             <p class="foottitle"><a href="">工作机遇</a></p>
+                             <p class="foottitle"><a href="">迪卡侬可持续发展</a></p>
+                         </li>
+                         <li class="indexfootlidom">
+                            <h3>我们的服务</h3>
+                            <p class="foottitle"><a href="">退换货政策</a></p>
+                            <p class="foottitle"><a href="">配送方式</a></p>
+                            <p class="foottitle"><a href="">工作室</a></p>
+                            <p class="foottitle"><a href="">门店自提</a></p>
+                            <p class="foottitle"><a href="">团购</a></p>
+                            <p class="foottitle"><a href="">礼品卡</a></p>
+                        </li>
+                        <li class="indexfootlidom">
+                            <h3>帮助</h3>
+                            <p class="foottitle"><a href="">帮助中心</a></p>
+                            <p class="foottitle"><a href="">会员权益</a></p>
+                            <p class="foottitle"><a href="">客服电话4009-109-109</a></p>
+                        </li>
+                        <li class="indexfootlidom">
+                            <h3>合法</h3>
+                            <p class="foottitle"><a href="">营业执照</a></p>
+                            <p class="foottitle"><a href="">隐私政策</a></p>
+                            <p class="foottitle"><a href="">会员须知</a></p>
+                            <p class="foottitle"><a href="">官网购物须知</a></p>
+                        </li>
+                     </ul>
+                     <ul>
+                         <li>
+                             <img src="imgs/indeximgs/qrcode_webiste.jpg" alt="">
+                             <h3>关注迪卡侬</h3>
+                         </li>
+                     </ul>
+                 </div>
+                 <div class="indexfootshowbox">
+                     <p>Copyright&nbsp;2003-2020,迪卡侬集团及其附属公司。沪ICP备1600315号-7</p>
+                     <ul>
+                         <li class="imgbigsize">
+                             <img src="imgs/indeximgs/picp_bg (1).png" class="imgbigsize" alt="">
+                             <p class="phoneclass">31011502001899</p>
+                         </li>
+                         <li class="imglittlesize">
+                             <img src="imgs/indeximgs/picp_bg.png" class="imglittlesize" alt="">
+                         </li>
+                     </ul>
+                     <h5>所有产品价格均包含增值税</h5>
+                 </div>
+             </div>
+        </div>
+    </div>
+</body>
+<script src="projectjs/jquery-3.2.1.min.js"></script>
+<script src="projectjs/banner.js"></script>
+<script src="datejs/playdate.js"></script>
+<script src="projectjs/index.js"></script>
+<script src="datejs/collectdate.js"></script>
+<script src="projectjs/indexproduct.js"></script>
+<script src="datejs/mainproductdate.js"></script>
+<script src="projectjs/mainprod.js"></script>
+<script src="datejs/newproduct.js"></script>
+<script src="projectjs/setnewproduct.js"></script>
+<script src="datejs/callbackdate.js"></script>
+<script src="projectjs/setCallBack.js"></script>
+<script src="datejs/navdate.js"></script>
+<script src="projectjs/setNav.js"></script>
+<script >
+     //头部naval的动态设置
+     //jquery部分
+     jQuery.noConflict();
+     (function($){
+     $("window").ready(function(){
+        $("#navbox").css("width",$(document).width()+"px");
+     });
+     $(".headlineclass1:first-child").click(function(e){
+        $("#navboxdivdom").css("left", "0px");
+     });
+     $("#navbox").mouseleave(function(){
+        $("#navboxdivdom").css("left", -1*$("#navboxdivdom").width()+"px");
+     });
+     $("#navbox").mouseenter(function(){
+        $("#navboxdivdom").css("left", "0px");
+     });
+
+    })(jQuery);
+    //原生js
+    //导航navboxdivdom
+    let navbox = document.getElementById("navboxdivdom");
+    let navdate = getNavDate();
+    setNav(navbox,navdate); 
+    //navclick
+    //选项
+    let selectdom = document.getElementsByClassName("selectbox")[0].children[0].children;
+    let selectshowbox = document.getElementById("selectshowbox").children;
+    for(let i=0;i<selectdom.length;i++){
+        selectdom[i].onmouseenter = function(){
+            selectdom[i].style.backgroundColor = "green";
+            selectshowbox[i].style.display = "block";
+        }
+        selectdom[i].onmouseleave = function(){
+            if(i<selectdom.length-1){
+                selectdom[i].style.backgroundColor = "white";
+            }else{
+                selectdom[i].style.backgroundColor = "#ffea28";
+            }
+            selectshowbox[i].style.display = "none";
+        }
+    }
+    //购物列表的效果
+</script>
+</html>

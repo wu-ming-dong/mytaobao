@@ -1,0 +1,74 @@
+#middletextbox{
+    width: 1350px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+}
+#middletextbox>img{
+    float: left;
+    width: 1350px;
+    height: 540px;
+}
+.push{
+    width: 1350px;
+    height: 540px;
+    position: absolute;
+    background-color: gray;
+    opacity: 0.3;
+}
+#getphonenum{
+    padding: 20px;
+    width: 330px;
+    height: 180px;
+    position: absolute;
+    top:170px;
+    left: 500px;
+    background-color: white;
+    margin: auto;
+}
+#getphonenum>p{
+    font-size: 14px;
+}
+#userphondatebox>li{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    height: 40px;
+}
+#userphondatebox>li:nth-child(1){
+    border: 1px solid gray;
+}
+#userphondatebox>li:nth-child(1)>span{
+    display: inline-block;
+    width: 20px;
+    height: 15px;
+    margin-top: 13px;
+    margin-left: 10px;
+    background-color: pink;
+    position: relative;
+    overflow: hidden;
+}
+#userphondatebox>li:nth-child(1) img{
+    height: 15px;
+    position: absolute;
+    left: -120px;
+}
+#userphone{
+    float: right;
+    height: 26px;
+    margin-top: 5px;
+    width: 280px;
+    outline: none;
+    border-color: transparent;
+    text-indent: 1em;
+    opacity: 0.5;
+    border-left: 1px solid gray;
+}
+#userphondatebox>li:nth-child(2){
+    text-align: center;
+    line-height: 40px;
+    background-color: blue;
+    color: white;
+}
+#userphondatebox>li:nth-child(2)>span{
+    float: right;
+}

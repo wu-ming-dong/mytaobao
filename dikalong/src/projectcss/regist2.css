@@ -1,0 +1,277 @@
+#middregisttbox{
+    background-color: #edeff1;
+    margin: auto;
+}
+.dateshowbox{
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    margin: auto;
+}
+.registfoot{
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    margin: auto;
+}
+.registpage{
+    width: 920px;
+    margin: auto;
+}
+.regreturnbtn{
+    width: 118px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    background-color: #d4d7d9;
+    color: black;
+    border-radius: 10px;
+}
+.regreturnbtn:hover{
+    background-color: green;
+    color: red;
+}
+.regreturnbtn>span{
+    float: left;
+    margin-left: 5px;
+}
+.regtitle{
+    color: #0082c3;
+    margin-top: 20px;
+    font-size: 30px;
+}
+.registpromt{
+    font-size: 14px;
+}
+.userdatepage{
+    background-color: white;
+    padding: 60px;
+}
+.userpromttitle{
+    color: #0082c3;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 16px;
+}
+.phonebox{
+    width: 247px;
+    height: 39px;
+    border: 1px solid #d4d7d9;
+}
+.codebox{
+    width: 247px;
+    height: 39px;
+    border: 1px solid #d4d7d9;
+}
+.codebox>input{
+    height: 32px;
+    width: 100px;
+    margin-top: 2px;
+    outline: none;
+    text-align: center;
+    line-height: 32px;
+    font-size: 20;
+    opacity: 0.5;
+    border: 1px solid transparent;
+    border-right: 1px solid gray;
+}
+.codebox>span{
+    display: inline-block;
+    height: 32px;
+    width: 100px;
+    margin-top: 2px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 32px;
+}
+
+
+.userphoneset{
+    padding-bottom: 50px;
+}
+.phonebox>span{
+    width: 20px;
+    height: 15px;
+    overflow: hidden;
+    display: inline-block;
+    position: relative;
+    margin: 12px;
+}
+.phonebox>span>img{
+    height: 15px;
+    position: absolute;
+    left: -120px;
+}
+.phonebox>input{
+    vertical-align: top;
+    height: 20px;
+    width: 190px;
+    margin-top: 8px;
+    outline: none;
+    border: 1px solid transparent;
+    text-indent: 1em;
+    border-left: 1px solid gray;
+}
+.usersexbox{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#women{
+    margin-left: 30px;
+}
+.ussernamebox>ul{
+    margin-top: 20px;
+    width: 540px;
+    height: 100px;
+    position: relative;
+}
+.ussernamebox>ul>li{
+    width: 250pxpx;
+    height: 70px;
+    position: absolute;
+}
+.ussernamebox>ul>li:nth-child(1){
+    left: 0px;
+}
+.ussernamebox>ul>li:nth-child(2){
+    right: 0px;
+}
+.ussernamebox>ul>li>input{
+    width: 250px;
+    height: 40px;
+    outline: none;
+    border: 1px solid gray;
+}
+.userpasssetbox{
+    width: 500px;
+    height: 110px;
+    position: relative;
+}
+.userpasssetbox>li{
+    position: absolute;
+    width: 240px;
+    height: 80px;
+    top: 15px;
+}
+.userpasssetbox>li:nth-child(1){
+    left: 0px;
+}
+.userpasssetbox>li:nth-child(2){
+    right: 0px;
+    width: 210px;
+    padding-left: 6px;
+    border-left: 1px solid gray;
+}
+.passinputbox>p:nth-child(2){
+    width: 240px;
+    height: 50px;
+    border: 1px solid gray;
+}
+.passinputbox>p:nth-child(2)>img{
+    width: 30px;
+    margin-top: 10px;
+}
+#password{
+    height: 45px;
+    width: 190px;
+    font-size: 20px;
+    text-indent: 0.3em;
+    outline: none;
+    border-color: transparent;
+}
+.usernam{
+    font-size: 20px;
+    text-indent: 0.3em;
+    outline: none;
+}
+.passwordstd{
+    font-size: 14px;
+}
+.passwordstd>span{
+    display: inline-block;
+    margin-left: 15px;
+    margin-right: 6px;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    line-height: 16px;
+    font-size: 18px;
+    font-weight: bold;
+    color: transparent;
+}
+.autoreg{
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 50px;
+}
+.autoreg>input{
+    vertical-align: top;
+    width: 20px;
+    height: 20px;
+    margin-top: 5px;
+    margin-right: 8px;
+}
+.autoreg>span{
+    margin-left: 4px;
+}
+.userselectbox{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.userselectbox>input:nth-child(2){
+    margin-left: 20px;
+}
+.agreebox{
+    height: 300px;
+    position: relative;
+}
+#regreturnbtn{
+    margin-top: 30px;
+}
+#regagreebtn{
+    width: 118px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    background-color: #0082c3;
+    color: black;
+    border-radius: 10px;
+    position: absolute;
+    right: 0px;
+    top: 10px;
+}
+#regagreebtn>span{
+    float: right;
+    margin-right: 5px;
+}
+#agreetext{
+    width: 198px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 14px;
+    color: black;
+    position: absolute;
+    right: 0px;
+    top: 60px;
+}
+#agreetext>a{
+    text-decoration: #0082c3;
+}
+.explaintitle{
+    margin-top: 56px;
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+.explaindiscs{
+    font-size: 12px;
+}
+#userphone{
+    font-size: 18px;
+    background-color: white;
+    opacity: 0.7;
+}

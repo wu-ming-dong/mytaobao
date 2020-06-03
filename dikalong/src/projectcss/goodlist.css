@@ -1,0 +1,114 @@
+.navdaohanglie{
+    overflow: hidden;
+}
+.goodlistfoot{
+    width: 1300px;
+    float: left;
+}
+.navdaohanglie>p{
+    float: left;
+    background-color: #888888;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 18px;
+    color: white;
+}
+.navdaohanglie>p:last-child{
+    border-radius: 0px 16px 16px 0px;
+}
+.navdaohanglie>p>span{
+    margin-left: 10px;
+    color: white;
+}
+.navdaohanglie>p:hover{
+    background-color: black;
+    border-radius: 0px 16px 16px 0px;
+}
+.goodslistbox{
+    width: 1340px;
+    overflow: hidden;
+    margin: auto;
+    position: relative;
+    
+}
+#goodlistnav{
+    position: absolute;
+    left: 0px;
+    width: 300px;
+    height: 640px;
+    border: 1px solid #edeff1;
+}
+#goodlistshowbox{
+   float: right;
+   right: 0px;
+   width: 1000px;
+   border: 1px solid #edeff1;
+}
+.imgboxnavclass{
+    width: 1000px;
+    height: 130px;
+    position: relative;
+    overflow: hidden;
+}
+.imgboxnavclass>img{
+    height: 130px;
+    width: 230px;
+}
+.goodelistshopuldomtext{
+    height: 130px;
+    width: 800px;
+    position: absolute;
+    top: 0px;
+    right: -0px;
+    background-color: #fafafa;
+}
+.goodelistshopuldomtext>h3{
+    transform: skew(-10deg);
+    font-size: 18px;
+    margin-left: 44px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.goodelistshopuldomtext>p{
+    height: 30px;
+    width: 760px;
+    line-height: 30px;
+    margin-left: 40px;
+    font-size: 14px;
+}
+.goodelistshopuldomtext>div{
+    height: 130px;
+    width: 230px;
+    position: absolute;
+    top: 0px;
+    right: -30px;
+    transform: skew(10deg);
+    background-color: #f4f4f4;
+   text-align: center;
+    line-height: 130px;
+}
+.goodelistshopuldomtext>div p{
+    font-weight: bold;
+}
+.goodlistshopheadliebox{
+    width: 1200px;
+    height: 40px;
+}
+.goodlistshopheadliebox>p{
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #f4f4f4;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.goodlistshopheadliebox>p:nth-child(-n+5){
+    width: 60px;
+    text-align: center;
+}
+.goodlistshopheadliebox>p:nth-child(6){
+    width: 440px;
+}
+.goodlistshopheadliebox>p:nth-child(7){
+    width: 100px;
+}

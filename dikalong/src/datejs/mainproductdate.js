@@ -1,0 +1,47 @@
+function getMainProductDate(){
+    let obj = [
+        {
+            "price":149.90,
+            "url":"Discovery+Soft+Archery+Target+Boss.jpg",
+            "brand":"GEOLOGIC",
+            "desc":"射箭运动软件靶<br>DISCOVERY",
+            "rate":"4.4(10条评价)"
+         },
+         {
+            "price":149.90,
+            "url":"Discovery+Soft+Archery+Target+Boss.jpg",
+            "brand":"GEOLOGIC",
+            "desc":"射箭运动软件靶<br>DISCOVERY",
+            "rate":"4.4(10条评价)"
+         },
+         {
+            "price":149.90,
+            "url":"Discovery+Soft+Archery+Target+Boss.jpg",
+            "brand":"GEOLOGIC",
+            "desc":"射箭运动软件靶<br>DISCOVERY",
+            "rate":"4.4(10条评价)"
+         },
+         {
+            "price":149.90,
+            "url":"Discovery+Soft+Archery+Target+Boss.jpg",
+            "brand":"GEOLOGIC",
+            "desc":"射箭运动软件靶<br>DISCOVERY",
+            "rate":"4.4(10条评价)"
+         },
+         {
+            "price":149.90,
+            "url":"Discovery+Soft+Archery+Target+Boss.jpg",
+            "brand":"GEOLOGIC",
+            "desc":"射箭运动软件靶<br>DISCOVERY",
+            "rate":"4.4(10条评价)"
+         },
+         {
+            "price":149.90,
+            "url":"Discovery+Soft+Archery+Target+Boss.jpg",
+            "brand":"GEOLOGIC",
+            "desc":"射箭运动软件靶<br>DISCOVERY",
+            "rate":"4.4(10条评价)"
+         }
+    ];
+    return obj;
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="11px" viewBox="0 0 12 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.3 (81716) - https://sketch.com -->
+    <title>icon/star-fill</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M4.15785012,4.93146619 L5.57384835,2.0757941 C5.70804195,1.80516316 6.09405696,1.80516316 6.22825057,2.0757941 L7.64424883,4.93146619 L10.8109019,5.38949261 C11.1109887,5.43289731 11.2305532,5.80193417 11.0129353,6.01307037 L8.72247726,8.23530804 L9.2631213,11.3727627 C9.3144933,11.6708837 9.00190846,11.8986331 8.73387496,11.7583717 L5.90104946,10.2759604 L3.06822402,11.7583717 C2.80019051,11.8986331 2.48760567,11.6708837 2.53897767,11.3727627 L3.07962167,8.23530804 L0.78916364,6.01307037 C0.571545787,5.80193417 0.691110304,5.43289731 0.991197049,5.38949261 L4.15785012,4.93146619 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbol" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="product-list/rate" transform="translate(0.000000, -1.000000)">
+            <g id="icon/star-fill">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#FFB339" fill-rule="nonzero" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>
